@@ -918,6 +918,23 @@ main#app{ position:relative; z-index:1; }
 .rt-success .facts .fact:first-child{ border-left-color:var(--ok); background:linear-gradient(150deg, var(--ok-bg), #fff 78%); }
 .rt-warning .facts .fact:first-child{ border-left-color:var(--warn); background:linear-gradient(150deg, var(--warn-bg), #fff 78%); }
 
+/* fact rows with a leading icon (icon on the left, value + label to its right) */
+.fact.fact-ico-row{ display:grid; grid-template-columns:auto 1fr; column-gap:14px; align-items:center; }
+.fact.fact-ico-row .fact-ico{ grid-row:1 / span 2; align-self:center; display:grid; place-items:center; color:var(--navy); }
+.fact.fact-ico-row .fv{ grid-column:2; }
+.fact.fact-ico-row .fl{ grid-column:2; }
+.fact-ico .icon{ width:46px; height:46px; }
+.facts .fact.fact-ico-row:first-child{ display:grid; }
+.facts .fact.fact-ico-row:first-child .fact-ico .icon{ width:84px; height:84px; }
+.rt-success .fact-ico{ color:var(--ok); }
+.rt-warning .fact-ico{ color:var(--warn); }
+
+/* legal sub-heading with a leading icon */
+.legal p.lx-h{ display:flex; align-items:center; gap:9px; font-weight:700; color:var(--navy); margin:14px 0 4px; }
+.legal p.lx-h .lx-h-ico{ flex:none; display:grid; place-items:center; }
+.legal p.lx-h .lx-h-ico .icon{ width:30px; height:30px; }
+.legal p.lx-h .lx-h-tx{ min-width:0; }
+
 /* headline tag pill in collapsed rule head */
 .rule-tag{ flex:none; align-self:flex-start; display:inline-flex; align-items:center; height:26px; padding:0 11px;
   border-radius:99px; font-size:13px; font-weight:700; letter-spacing:-.01em; margin-top:1px;

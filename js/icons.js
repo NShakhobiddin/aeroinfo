@@ -55,7 +55,11 @@ window.ICONS = {
   googleplay:   '<path d="M4 3.2a1 1 0 0 1 1.5-.87l13 7.8a1 1 0 0 1 0 1.74l-13 7.8A1 1 0 0 1 4 18.8z"/><path d="m4 3 11 9-11 9"/>',
   apple:        '<path d="M14.9 3.4c.1 1-.3 1.9-.9 2.6-.6.7-1.6 1.3-2.5 1.2-.1-1 .4-1.9 1-2.6.6-.7 1.6-1.2 2.4-1.2Z"/><path d="M18.1 16.4c-.5 1.2-1.6 3.2-3 3.2-.9 0-1.4-.6-2.6-.6s-1.7.6-2.6.6c-1.4 0-2.6-2-3.2-3.3C5.4 13.7 6.3 9.8 9 9.8c1 0 1.9.7 2.5.7.6 0 1.8-.8 3-.7 1 0 2 .5 2.7 1.4-2.4 1.5-2 4.6.9 5.2Z"/>',
   telegram:     '<path d="M21.5 4.4 2.6 11.5a.6.6 0 0 0 .05 1.13L7.6 14l1.9 5.6a.6.6 0 0 0 1 .24L13 17l4.7 3.4a.7.7 0 0 0 1.1-.42l2.7-14.8a.66.66 0 0 0-.95-.78Z"/><path d="m7.6 14 9.6-7.1-7 8.3"/>',
-  refresh:      '<path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/>'
+  refresh:      '<path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/>',
+  /* substitute line icons (asset PNGs not shipped in this handoff) */
+  calDay:       '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><rect x="7" y="13.5" width="5" height="5" rx="1" style="fill:currentColor;stroke:none"/>',
+  calMonth:     '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/><path d="M7.5 14h.01M12 14h.01M16.5 14h.01M7.5 18h.01M12 18h.01M16.5 18h.01"/>',
+  prescription: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8.5 17V8h3a2.4 2.4 0 0 1 0 4.8h-3"/><path d="m11.2 12.8 3.3 4.2"/>'
 };
 
 /* Custom raster icons (solid silhouettes) rendered via CSS mask so they

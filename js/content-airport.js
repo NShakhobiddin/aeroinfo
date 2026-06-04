@@ -9,9 +9,9 @@ DATA.airport_in = [
   {
     id: "in-duty-free", icon: "taxfree", type: "info", tag:"1 000 $",
     facts: [
-      { v:"1 000 $", l:{uz:"Bojsiz olib kirish me’yori",ru:"Беспошлинная норма ввоза",en:"Duty-free import limit",zh:"免税进口限额"} },
-      { v:{uz:"3 kalendar kun",ru:"3 кал. дня",en:"3 calendar days",zh:"3 个日历日"}, l:{uz:"3 kalendar kundan ko‘p vaqt xorijda bo‘lganda imtiyoz beriladi",ru:"Льгота при пребывании за рубежом более 3 календарных дней",en:"Allowance applies when abroad more than 3 calendar days",zh:"在境外停留超过 3 个日历日时享受免税"} },
-      { v:{uz:"3+ marta",ru:"3+ раз",en:"3+ times",zh:"3+ 次"}, l:{uz:"Kalendar oyda 3 va undan ortiq xorijda bo‘lganda imtiyoz yo‘q",ru:"Если 3 и более раз в кал. месяц — льготы нет",en:"No allowance if abroad 3+ times in a calendar month",zh:"一个日历月内 3 次及以上则无免税"} }
+      { ico:"taxfree", v:"1 000 $", l:{uz:"Bojsiz olib kirish me’yori",ru:"Беспошлинная норма ввоза",en:"Duty-free import limit",zh:"免税进口限额"} },
+      { ico:"calDay", v:{uz:"3 kalendar kun",ru:"3 кал. дня",en:"3 calendar days",zh:"3 个日历日"}, l:{uz:"3 kalendar kundan ko‘p vaqt xorijda bo‘lganda imtiyoz beriladi",ru:"Льгота при пребывании за рубежом более 3 календарных дней",en:"Allowance applies when abroad more than 3 calendar days",zh:"在境外停留超过 3 个日历日时享受免税"} },
+      { ico:"calMonth", v:{uz:"3+ marta",ru:"3+ раз",en:"3+ times",zh:"3+ 次"}, l:{uz:"Kalendar oyda 3 va undan ortiq xorijda bo‘lganda imtiyoz yo‘q",ru:"Если 3 и более раз в кал. месяц — льготы нет",en:"No allowance if abroad 3+ times in a calendar month",zh:"一个日历月内 3 次及以上则无免税"} }
     ],
     title: { uz:"Bojsiz olib kirish me’yorlari", ru:"Нормы беспошлинного ввоза", en:"Duty-free import limits", zh:"免税入境限额" },
     short: {
@@ -30,7 +30,7 @@ DATA.airport_in = [
         ru:"«Норма беспошлинного ввоза товаров, ввозимых физическими лицами для личных нужд в некоммерческих целях, воздушным транспортом установлена в размере 1000 долларов США. Данная норма не применяется при пребывании в иностранном государстве менее трёх календарных дней и при въезде 3 и более раз в течение календарного месяца.»",
         en:"“The duty-free import limit for goods brought into the republic by individuals for personal, non-commercial use by air is set at USD 1,000. This limit does not apply if the person stayed abroad less than three calendar days, or entered 3 or more times within one calendar month.”",
         zh:"「个人因私非商业目的经航空运输携带入境物品的免税限额定为 1000 美元。若在外国停留少于三个日历日，或在一个日历月内入境 3 次及以上，则不适用该限额。」" } },
-      { h:{ uz:"Kalendar kun nima?", ru:"Что такое календарный день?", en:"What is a calendar day?", zh:"什么是日历日？" } },
+      { hIco:"calDay", h:{ uz:"Kalendar kun nima?", ru:"Что такое календарный день?", en:"What is a calendar day?", zh:"什么是日历日？" } },
       { note:{
         uz:"Kalendar kun – kalendar jadvalda belgilangan kun bo‘lib, uzluksiz 24 soatlik davrni anglatadi va unda hech qanday kunlar (“dam olish”, “bayram” yoki “bank kuni” kabi) istisno qilinmaydi. Ya’ni chet davlatda to‘liq bo‘lgan 3 kuningiz e’tiborga olinadi.",
         ru:"Календарный день — обозначенный в календаре день, означающий непрерывный 24-часовой период, при этом никакие дни (например, «выходные», «праздничные» или «банковские») не исключаются. То есть учитываются 3 полных дня, проведённые за рубежом.",
@@ -41,7 +41,7 @@ DATA.airport_in = [
         ru:"Например, вы вылетели 1 января в 10:00 и вернулись 5 января в 15:00. Значит, вы полностью (с 00:00 до 23:59) находились за рубежом 2, 3 и 4 января — льгота предоставляется. Если бы вы вернулись 4 января, льгота не применялась бы.",
         en:"For example, you flew out on 1 January at 10:00 and returned on 5 January at 15:00. So you were fully abroad (00:00–23:59) on 2, 3 and 4 January — you get the allowance. Had you returned on 4 January, it would not apply.",
         zh:"例如，您于 1 月 1 日 10:00 出境，1 月 5 日 15:00 返回。即您在 1 月 2、3、4 日完整地（00:00 至 23:59）身处境外——可享受免税。若您在 1 月 4 日返回，则不适用。" } },
-      { h:{ uz:"Kalendar oy nima?", ru:"Что такое календарный месяц?", en:"What is a calendar month?", zh:"什么是日历月？" } },
+      { hIco:"calMonth", h:{ uz:"Kalendar oy nima?", ru:"Что такое календарный месяц?", en:"What is a calendar month?", zh:"什么是日历月？" } },
       { note:{
         uz:"Kalendar oy – kalendar jadvalda belgilangan oy bo‘lib, oyning 1-sanasidan boshlab so‘nggi sanasigacha bo‘lgan uzluksiz davrni anglatadi. Misol uchun, 1-yanvardan 31-yanvargacha.",
         ru:"Календарный месяц — обозначенный в календаре месяц, означающий непрерывный период с 1-го по последнее число месяца. Например, с 1 по 31 января.",
@@ -284,7 +284,7 @@ DATA.airport_in = [
       en:"Medicines for personal use are imported within set packaging and quantity limits; some require a medical document.",
       zh:"个人用药品在规定的包装和数量范围内携带；部分需医疗证明。" },
     legal: [
-      { frame:"red", p:{
+      { frame:"red", frameIco:"prescription", p:{
         uz:"<b class='tx-red'>Tibbiyot muassasasi hujjati taqdim etilmasdan</b> shaxsiy foydalanish uchun:<br>- turli nomdagi <b class='tx-warn'>10 tagacha</b> dori preparati (har biri uchun <b class='tx-warn'>5 oʻramdan</b> ortiq emas) va<br>- <b class='tx-warn'>5 birlikdan</b> ortiq boʻlmagan tibbiy buyumlar olib kiriladi.",
         ru:"<b class='tx-red'>Без представления документа медицинского учреждения</b> для личного пользования ввозятся:<br>- <b class='tx-warn'>до 10 наименований</b> лекарственных препаратов (не более <b class='tx-warn'>5 упаковок</b> каждого) и<br>- не более <b class='tx-warn'>5 единиц</b> медицинских изделий.",
         en:"<b class='tx-red'>Without a document from a medical institution</b>, for personal use one may bring:<br>- <b class='tx-warn'>up to 10 named medicines</b> (no more than <b class='tx-warn'>5 packages</b> of each) and<br>- no more than <b class='tx-warn'>5 units</b> of medical devices.",
@@ -341,7 +341,7 @@ DATA.airport_out = [
   {
     id: "out-duty-free", icon: "taxfree", type: "success", importantTone:"warn", tag:"5 000 $",
     facts: [
-      { v:"5 000 $", l:{uz:"Ekvivalentida deklaratsiyasiz olib chiqish mumkin",ru:"Эквивалент — вывоз без декларации",en:"Equivalent — export without declaration",zh:"等值——可免申报出境"} }
+      { ico:"taxfree", v:"5 000 $", l:{uz:"Ekvivalentida deklaratsiyasiz olib chiqish mumkin",ru:"Эквивалент — вывоз без декларации",en:"Equivalent — export without declaration",zh:"等值——可免申报出境"} }
     ],
     title: { uz:"Bojsiz olib chiqish", ru:"Беспошлинный вывоз", en:"Duty-free export", zh:"免税出境" },
     short: {

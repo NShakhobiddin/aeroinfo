@@ -209,7 +209,7 @@
       : "";
     if(r.legalFirst) body += legalBlock;
     if(r.facts && r.facts.length){
-      body += `<div class="facts">${r.facts.map(f=>`<div class="fact"><div class="fv">${typeof f.v==="string"?f.v:L(f.v)}</div><div class="fl">${L(f.l)}</div></div>`).join("")}</div>`;
+      body += `<div class="facts">${r.facts.map(f=>`<div class="fact${f.ico?' fact-ico-row':''}">${f.ico?`<span class="fact-ico">${ic(f.ico)}</span>`:""}<div class="fv">${typeof f.v==="string"?f.v:L(f.v)}</div><div class="fl">${L(f.l)}</div></div>`).join("")}</div>`;
     }
     if(r.important){
       const cl = r.importantTone || (r.type==="danger" ? "danger" : (r.type==="warning" ? "warn" : (r.type==="success"?"ok":"info")));
@@ -249,7 +249,7 @@
           <p class="lane-text">${L(b.p)}</p>
         </div>`;
       }
-      if(b.h) return `<p style="font-weight:700;color:var(--navy)">${L(b.h)}</p>`;
+      if(b.h) return `<p class="lx-h"${b.hIco?'':' style="font-weight:700;color:var(--navy)"'}>${b.hIco?`<span class="lx-h-ico">${ic(b.hIco)}</span><span class="lx-h-tx">${L(b.h)}</span>`:L(b.h)}</p>`;
       if(b.ul) return `<ul>${b.ul.map(li=>`<li>${L(li)}</li>`).join("")}</ul>`;
       if(b.note) return `<div class="legal-ex${b.tone?' tone-'+b.tone:''}">${ic(b.ico||"info")}<span>${L(b.note)}</span></div>`;
       if(b.ex) return `<div class="legal-ex ex">${ic("bulb")}<span>${L(b.ex)}</span></div>`;
@@ -378,7 +378,7 @@
     return `<div class="field"><label>${label}</label><div class="input"><input id="${id}" type="number" inputmode="decimal" min="0" value="${val!=null?val:''}" placeholder="${ph||'0'}"/><span class="unit">${unit}</span></div></div>`;
   }
   function calcFields(){
-    const rate = localStorage.getItem("aero_rate") || "12600";
+    const rate = localStorage.getItem("aero_rate") || "11970";
     if(calcMode==="airport"){
       return field("ci-val", t("calc_goods_val"), getV("ci-val"), "$") +
              field("ci-w", t("calc_weight"), getV("ci-w"), "kg") +
@@ -399,20 +399,27 @@
     if(localStorage.getItem("aero_rate_auto")!=="1") return `<span class="rs-man">${ic("info")}<span>${L({uz:"Kursni yangilash uchun bosing",ru:"Нажмите, чтобы обновить курс",en:"Tap to refresh the rate",zh:"点击刷新汇率"})}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
     return `<span class="rs-ok">${ic("check")}<span>${L({uz:"Markaziy bank kursi",ru:"Курс ЦБ РУз",en:"CBU official rate",zh:"乌兹央行官方汇率"})}: <b>${fmtSom(+rate)} ${t("som")}</b>${date?` · ${date}`:""}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
   }
+  // Kurs maydonini rasmiy kursga moslaydi — foydalanuvchi qoʻlda
+  // oʻzgartirmagan boʻlsa (calcStore[fid]==null).
+  function syncRateField(rate){
+    if(rate==null || rate==="") return;
+    const fid = calcMode==="airport" ? "ci-rate" : "cp-rate";
+    if(calcStore[fid]==null){ const inp = document.getElementById(fid); if(inp) inp.value = rate; }
+  }
   function initCalcRate(){
     const status = document.getElementById("rate-status");
     const ts = +(localStorage.getItem("aero_rate_ts")||0);
     const fresh = (Date.now() - ts) < 6*3600*1000;
     if(fresh && localStorage.getItem("aero_rate_auto")==="1"){
       if(status) status.innerHTML = rateStatusHtml("ok");
+      syncRateField(localStorage.getItem("aero_rate")); // kesh yangi boʻlsa ham maydonni moslab qoʻyamiz
       return;
     }
     if(status) status.innerHTML = rateStatusHtml("loading");
     window.fetchCbuUsd(function(rate){
       const st = document.getElementById("rate-status");
       if(rate){
-        const fid = calcMode==="airport" ? "ci-rate" : "cp-rate";
-        if(calcStore[fid]==null){ const inp = document.getElementById(fid); if(inp) inp.value = rate; }
+        syncRateField(rate);
         if(st) st.innerHTML = rateStatusHtml("ok");
         const res = document.getElementById("calc-result"); if(res) res.innerHTML = calcResult();
       } else {
@@ -424,9 +431,9 @@
   function calcResult(){
     let r;
     if(calcMode==="airport"){
-      r = window.calcAirport(getV("ci-val"), getV("ci-w"), getV("ci-rate", localStorage.getItem("aero_rate")||"12600"));
+      r = window.calcAirport(getV("ci-val"), getV("ci-w"), getV("ci-rate", localStorage.getItem("aero_rate")||"11970"));
     } else {
-      r = window.calcPost(getV("cp-val"), getV("cp-w"), getV("cp-del"), getV("cp-rate", localStorage.getItem("aero_rate")||"12600"));
+      r = window.calcPost(getV("cp-val"), getV("cp-w"), getV("cp-del"), getV("cp-rate", localStorage.getItem("aero_rate")||"11970"));
     }
     let rows = "";
     if(!r.valid){
