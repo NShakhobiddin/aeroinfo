@@ -1,0 +1,42 @@
+name: Deploy to Sayt.uz (FTP)
+
+# Auto-uploads the site to your hosting on every push.
+# Credentials are read from repository Secrets (Settings → Secrets and
+# variables → Actions) so they are never stored in the code:
+#   FTP_SERVER      – e.g. ftp.sizningdomen.uz  (or the IP from Sayt.uz)
+#   FTP_USERNAME    – your FTP login
+#   FTP_PASSWORD    – your FTP password
+#   FTP_SERVER_DIR  – (optional) web root, default "public_html/".
+#                     Set to "./" if your FTP already lands in the web root.
+
+on:
+  push:
+    branches: [ main, claude/brave-mayer-JgylH ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # change FTP_SERVER_DIR secret to "./" if FTP already opens in the web root
+          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
+          # for a secure connection set protocol to "ftps" (if Sayt.uz supports it)
+          protocol: ftp
+          local-dir: ./
+          # only the site files are uploaded; repo/meta files are skipped
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/*.md
+            chats/**
