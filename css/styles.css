@@ -1113,3 +1113,28 @@ html, body{ overflow-x:hidden; max-width:100%; }
   .intro-bar{ width:220px !important; }
   html{ scroll-behavior:auto; }
 }
+
+/* ============================================================
+   MOBILE TEXT-SAFETY — keep every line of copy inside its box
+   (phones are the primary device; nothing should spill past the edge)
+   ============================================================ */
+/* long words, numbers, emails and links wrap instead of overflowing */
+.legal, .legal p, .legal li, .lane-text, .lane-head, .pro-note, .pro-title,
+.rc-short, .callout span, .legal-ex span, .legal-frame p, .key-note,
+.nc-desc, .page-lead, .page-title, .pb-cap span, .disclaimer span,
+.contact-rowitem, .step-way, .step-main, .app-dl-label span, .tg-bot,
+.fact .fl, .norm-item, .rule-title, .rule-short, h1, h2, h3, h4{
+  overflow-wrap:break-word;
+}
+/* raster images never exceed their container */
+img{ max-width:100%; height:auto; }
+/* inline illustration SVGs cap to their box (small .icon svgs keep their size) */
+.hero-illo svg, .pb-illo svg, .rc-illo svg, .illo{ max-width:100%; }
+
+@media (max-width:560px){
+  /* store / download buttons full-width and easy to tap */
+  .app-dl-btns{ flex-direction:column; }
+  .app-dl-btn{ width:100%; justify-content:center; }
+  /* let the big hero fact value wrap if a translated label is long */
+  .facts .fact:first-child .fv{ white-space:normal; }
+}
