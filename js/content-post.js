@@ -7,9 +7,9 @@ DATA.post = [
   {
     id: "post-duty-free", icon: "package", type: "info", tag:"200 / 100 $",
     facts: [
-      { v:"200 $", l:{uz:"Kuryerlik jo‘natmasi",ru:"Курьерское отправление",en:"Courier shipment",zh:"快递包裹"} },
-      { v:"100 $", l:{uz:"Pochta jo‘natmasi",ru:"Почтовое отправление",en:"Postal shipment",zh:"邮政包裹"} },
-      { v:{uz:"1 oy",ru:"1 месяц",en:"1 month",zh:"1 个月"}, l:{uz:"kuryer normasi davri",ru:"период курьерской нормы",en:"courier limit period",zh:"快递限额周期"} }
+      { v:"200 $", ico:"cashstack", l:{uz:"Kuryerlik jo‘natmasi",ru:"Курьерское отправление",en:"Courier shipment",zh:"快递包裹"} },
+      { v:"100 $", ico:"package", l:{uz:"Pochta jo‘natmasi",ru:"Почтовое отправление",en:"Postal shipment",zh:"邮政包裹"} },
+      { v:{uz:"1 kalendar oy",ru:"1 месяц",en:"1 month",zh:"1 个月"}, ico:"calmonth", l:{uz:"kuryer normasi davri",ru:"период курьерской нормы",en:"courier limit period",zh:"快递限额周期"} }
     ],
     title: { uz:"Bojsiz olib kirish", ru:"Беспошлинный ввоз", en:"Duty-free import", zh:"免税入境" },
     short: {
@@ -71,21 +71,46 @@ DATA.post = [
       en:"Personal or commercial purpose is judged by the recipient's age, address, frequency and type of goods.",
       zh:"个人或商业用途依据收件人年龄、地址、频次和货物类型判定。" },
     legal: [
+      { ico:"noncommercial", tone:"ok", note:{
+        uz:"<span class='tx-ok'>Notijorat maqsadlar uchun tovarlar</span> — jismoniy shaxslar tomonidan bojxona chegarasi orqali olib oʻtiladigan shaxsiy, oilaviy (ota-onasi, turmush oʻrtogʻi va farzandlari) ehtiyojlari uchun moʻljallangan hamda tadbirkorlik yoki boshqa tijorat faoliyatini amalga oshirish bilan bogʻliq boʻlmagan tovarlar",
+        ru:"«<span class='tx-ok'>товары для некоммерческих целей</span> — товары, перемещаемые физическими лицами через таможенную границу, предназначенные для личных, семейных (родителей, супруга и детей) нужд и не связанные с осуществлением предпринимательской или иной коммерческой деятельности;»",
+        en:"“<span class='tx-ok'>goods for non-commercial purposes</span> — goods moved across the customs border by individuals, intended for personal and family (parents, spouse and children) needs and not related to entrepreneurial or other commercial activity;”",
+        zh:"「<span class='tx-ok'>非商业目的物品</span>——由个人经海关边境携带、用于个人及家庭（父母、配偶和子女）需要，且与经营或其他商业活动无关的物品；」" } },
+      { ico:"commercial", tone:"warn", note:{
+        uz:"<span class='tx-warn'>Tijorat maqsadlar uchun tovarlar</span> — bojxona chegarasi orqali olib oʻtiladigan ishlab chiqarish, tadbirkorlik yoki boshqa tijorat faoliyati uchun moʻljallangan tovarlar",
+        ru:"«<span class='tx-warn'>товары для коммерческих целей</span> — товары, перемещаемые через таможенную границу, предназначенные для производственной, предпринимательской или иной коммерческой деятельности.»",
+        en:"“<span class='tx-warn'>goods for commercial purposes</span> — goods moved across the customs border, intended for manufacturing, entrepreneurial or other commercial activity.”",
+        zh:"「<span class='tx-warn'>商业目的物品</span>——经海关边境携带、用于生产、经营或其他商业活动的物品。」" } },
+      { h:{ uz:"Mansabdor shaxs quyidagi mezonlarga asoslanadi:", ru:"Должностное лицо руководствуется следующими критериями:", en:"The official relies on the following criteria:", zh:"工作人员依据以下标准：" } },
+      { ul:[
+        { uz:"<b class='tx-key' style='font-style:italic'>tovarlarning xususiyati</b> — isteʼmol xususiyatlari <b class='tx-ok' style='font-style:italic'>shaxsiy, oilaviy va maishiy ehtiyojlar</b> uchun moʻljallanganligi;",
+          ru:"характер товаров — потребительские свойства предназначены для личных, семейных и бытовых нужд;",
+          en:"the nature of the goods — consumer properties intended for personal, family and household needs;",
+          zh:"物品的性质——其消费特性是否用于个人、家庭和日常需要；" },
+        { uz:"<b class='tx-key' style='font-style:italic'>tovarlarning miqdori</b> — bir turdagi tovarlar shaxs va oilasi ehtiyojidan ortiq boʻlsa, aksi isbotlanmaguncha <b class='tx-warn' style='font-style:italic'>tijorat deb eʼtirof etiladi</b>;",
+          ru:"количество товаров — если однотипные товары превышают потребности лица и его семьи, они считаются коммерческими, пока не доказано обратное;",
+          en:"the quantity of goods — if goods of one type exceed the needs of the person and family, they are deemed commercial unless proven otherwise;",
+          zh:"物品的数量——同类物品超出本人及家庭需要的，除非另有证明，否则视为商业用途；" },
+        { uz:"<b class='tx-key' style='font-style:italic'>olib oʻtishning takroriyligi</b> — bir turdagi tovarlar <b class='tx-warn' style='font-style:italic'>bir necha bor</b> olib kirilsa, aksi isbotlanmaguncha <b class='tx-warn' style='font-style:italic'>tijorat deb eʼtirof etiladi</b> (pasportdagi shtamp yoki elektron qayd asos boʻladi);",
+          ru:"повторность перемещения — если однотипные товары ввозятся несколько раз, они считаются коммерческими, пока не доказано обратное (основанием служит штамп в паспорте или электронная запись);",
+          en:"the frequency of movement — if goods of one type are brought in several times, they are deemed commercial unless proven otherwise (a passport stamp or electronic record serves as the basis);",
+          zh:"携带的频次——同类物品多次携带入境的，除非另有证明，否则视为商业用途（以护照印章或电子记录为依据）；" }
+      ]},
       { h:{ uz:"Pochta/kuryer uchun qo‘shimcha mezonlar:", ru:"Дополнительные критерии для почты/курьера:", en:"Additional criteria for post/courier:", zh:"邮政/快递的附加标准：" } },
       { ul:[
-        { uz:"oluvchining (shu jumladan 16 yoshga to‘lmagan farzandlarining) yoshi tovar xususiyatiga muvofiqligi;",
+        { uz:"<b class='tx-key' style='font-style:italic'>oluvchining yoshi</b> (shu jumladan 16 yoshga to‘lmagan farzandlarining) tovar xususiyatiga muvofiqligi;",
           ru:"соответствие возраста получателя (в том числе его детей младше 16 лет) характеру товара;",
           en:"whether the recipient’s age (including children under 16) matches the nature of the goods;",
           zh:"收件人（含其 16 岁以下子女）的年龄与物品性质是否相符；" },
-        { uz:"bir manzilda yashovchi shaxslar tomonidan bir xil turdagi tovarlarni olib o‘tish takroriyligi;",
+        { uz:"bir manzilda yashovchi shaxslar tomonidan bir xil turdagi tovarlarni <b class='tx-key' style='font-style:italic'>olib o‘tish takroriyligi</b>;",
           ru:"повторность перемещения однотипных товаров лицами, проживающими по одному адресу;",
           en:"the frequency of moving goods of the same type by people living at one address;",
           zh:"同一地址居住者携带同类物品的频次；" },
-        { uz:"qabul qiluvchi manzilning shaxs ro‘yxatdan o‘tgan joyi bilan farqliligi.",
+        { uz:"qabul qiluvchi manzilning <b class='tx-key' style='font-style:italic'>shaxs ro‘yxatdan o‘tgan joyi bilan farqliligi</b>.",
           ru:"отличие адреса получателя от места регистрации лица.",
           en:"a difference between the delivery address and the person’s registered address.",
           zh:"收货地址与本人登记地址不一致。" },
-        { uz:"tovarning xususiyati, miqdori va olib o‘tish takroriyligi (umumiy mezonlar).",
+        { uz:"<b class='tx-key' style='font-style:italic'>tovarning xususiyati, miqdori va olib o‘tish takroriyligi</b>",
           ru:"характер, количество товара и повторность перемещения (общие критерии).",
           en:"the nature, quantity and frequency of movement of the goods (general criteria).",
           zh:"物品的性质、数量及携带频次（一般标准）。" }
@@ -118,35 +143,41 @@ DATA.post = [
         zh:"收件人可自愿通过电子政务门户/手机应用，或向最近的海关申请，确认或拒绝该通知。" } },
       { h:{ uz:"Jo‘natma quyidagi hollarda vaqtincha saqlovga olinishi mumkin:", ru:"Отправление может быть помещено на временное хранение в следующих случаях:", en:"A shipment may be placed in temporary storage in the following cases:", zh:"在以下情形包裹可被暂时存放：" } },
       { ul:[
-        { uz:"bojxona to‘lovi to‘lanishi lozim bo‘lgan tovarlar aniqlanganda;",
+        { uz:"<b class='tx-key' style='font-style:italic'>bojxona to‘lovi to‘lanishi lozim</b> bo‘lgan tovarlar aniqlanganda;",
           ru:"при выявлении товаров, по которым подлежит уплате таможенный платёж;",
           en:"when goods subject to a customs payment are identified;",
           zh:"发现需缴纳海关税费的物品时；" },
-        { uz:"tovar maqsadini aniqlashda nizoli holat yuzaga kelganda;",
+        { uz:"tovar maqsadini aniqlashda <b class='tx-key' style='font-style:italic'>nizoli holat</b> yuzaga kelganda;",
           ru:"при возникновении спорной ситуации при определении цели товара;",
           en:"when a dispute arises in determining the purpose of the goods;",
           zh:"在确定物品用途时出现争议时；" },
-        { uz:"namuna va sinamalar olinib, o‘rganish yakunlanmaganda;",
+        { uz:"<b class='tx-key' style='font-style:italic'>namuna va sinamalar</b> olinib, o‘rganish yakunlanmaganda;",
           ru:"когда взяты образцы и пробы, а исследование не завершено;",
           en:"when samples and specimens have been taken but the study is not complete;",
           zh:"已提取样品和样本但检验尚未完成时；" },
-        { uz:"Xavfni boshqarish tizimi topshirig‘i asosida;",
+        { uz:"<b class='tx-key' style='font-style:italic'>Xavfni boshqarish tizimi</b> topshirig‘i asosida;",
           ru:"на основании указания системы управления рисками;",
           en:"on the instruction of the risk-management system;",
           zh:"根据风险管理系统的指令；" },
-        { uz:"qo‘shimcha hujjat/ma’lumot talab qilinib, tekshiruv tugamaganda;",
+        { uz:"<b class='tx-key' style='font-style:italic'>qo‘shimcha hujjat/ma’lumot</b> talab qilinib, tekshiruv tugamaganda;",
           ru:"когда запрошены дополнительные документы/сведения, а проверка не завершена;",
           en:"when additional documents/information are required and the check is not finished;",
           zh:"需要补充单证/信息且审查尚未完成时；" },
-        { uz:"bojxona ko‘rigi yoki ekspertizasi yakunlanmaganda.",
+        { uz:"<b class='tx-key' style='font-style:italic'>bojxona ko‘rigi yoki ekspertizasi</b> yakunlanmaganda.",
           ru:"когда таможенный досмотр или экспертиза не завершены.",
           en:"when the customs inspection or expert examination is not complete.",
           zh:"海关查验或鉴定尚未完成时。" }
-      ]}
+      ]},
+      { btn:{uz:"Xabarnomani tasdiqlash yoki rad etish",ru:"Подтвердить или отклонить уведомление",en:"Confirm or reject the notification",zh:"确认或拒绝通知"},
+        sub:{uz:"YIDXP — Yagona interaktiv davlat xizmatlari portali orqali",ru:"Через ЕПИГУ — my.gov.uz",en:"Via the Unified Interactive Public Services Portal",zh:"通过统一互动政务服务门户"},
+        ico:"check", url:"https://my.gov.uz/uz/service/1364" },
+      { btn:{uz:"Nomiga kelayotgan kuryerlik joʻnatmalari haqida axborot",ru:"Информация о курьерских отправлениях на ваше имя",en:"Information on courier shipments in your name",zh:"以您名义寄达的快递信息"},
+        sub:{uz:"YIDXP — Yagona interaktiv davlat xizmatlari portali orqali",ru:"Через ЕПИГУ — my.gov.uz",en:"Via the Unified Interactive Public Services Portal",zh:"通过统一互动政务服务门户"},
+        ico:"package", url:"https://my.gov.uz/uz/service/717" }
     ]
   },
   {
-    id: "post-prohibited", icon: "ban", type: "danger", link: "prohibited-post",
+    id: "post-prohibited", icon: "ban", type: "danger", proScope: "post",
     title: { uz:"Jo‘natmalarda taqiqlangan va cheklangan tovarlar", ru:"Запрещённые и ограниченные товары в отправлениях", en:"Prohibited & restricted goods in shipments", zh:"邮寄中禁止和限制的物品" },
     short: {
       uz:"To‘liq qidiruvli ro‘yxat. Pochta uchun qo‘shimcha taqiqlar: valyuta, qimmatbaho buyumlar, tirik hayvonlar.",

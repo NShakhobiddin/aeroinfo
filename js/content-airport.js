@@ -9,9 +9,9 @@ DATA.airport_in = [
   {
     id: "in-duty-free", icon: "taxfree", type: "info", tag:"1 000 $",
     facts: [
-      { ico:"taxfree", v:"1 000 $", l:{uz:"Bojsiz olib kirish me’yori",ru:"Беспошлинная норма ввоза",en:"Duty-free import limit",zh:"免税进口限额"} },
-      { ico:"calDay", v:{uz:"3 kalendar kun",ru:"3 кал. дня",en:"3 calendar days",zh:"3 个日历日"}, l:{uz:"3 kalendar kundan ko‘p vaqt xorijda bo‘lganda imtiyoz beriladi",ru:"Льгота при пребывании за рубежом более 3 календарных дней",en:"Allowance applies when abroad more than 3 calendar days",zh:"在境外停留超过 3 个日历日时享受免税"} },
-      { ico:"calMonth", v:{uz:"3+ marta",ru:"3+ раз",en:"3+ times",zh:"3+ 次"}, l:{uz:"Kalendar oyda 3 va undan ortiq xorijda bo‘lganda imtiyoz yo‘q",ru:"Если 3 и более раз в кал. месяц — льготы нет",en:"No allowance if abroad 3+ times in a calendar month",zh:"一个日历月内 3 次及以上则无免税"} }
+      { v:"1 000 $", ico:"taxfreebig", l:{uz:"Bojsiz olib kirish me’yori",ru:"Беспошлинная норма ввоза",en:"Duty-free import limit",zh:"免税进口限额"} },
+      { v:{uz:"3 kalendar kun",ru:"3 кал. дня",en:"3 calendar days",zh:"3 个日历日"}, ico:"calday", l:{uz:"3 kalendar kundan ko‘p vaqt xorijda bo‘lganda imtiyoz beriladi",ru:"Льгота при пребывании за рубежом более 3 календарных дней",en:"Allowance applies when abroad more than 3 calendar days",zh:"在境外停留超过 3 个日历日时享受免税"} },
+      { v:{uz:"3+ marta",ru:"3+ раз",en:"3+ times",zh:"3+ 次"}, ico:"calmonth", l:{uz:"Kalendar oyda 3 va undan ortiq xorijda bo‘lganda imtiyoz yo‘q",ru:"Если 3 и более раз в кал. месяц — льготы нет",en:"No allowance if abroad 3+ times in a calendar month",zh:"一个日历月内 3 次及以上则无免税"} }
     ],
     title: { uz:"Bojsiz olib kirish me’yorlari", ru:"Нормы беспошлинного ввоза", en:"Duty-free import limits", zh:"免税入境限额" },
     short: {
@@ -30,7 +30,7 @@ DATA.airport_in = [
         ru:"«Норма беспошлинного ввоза товаров, ввозимых физическими лицами для личных нужд в некоммерческих целях, воздушным транспортом установлена в размере 1000 долларов США. Данная норма не применяется при пребывании в иностранном государстве менее трёх календарных дней и при въезде 3 и более раз в течение календарного месяца.»",
         en:"“The duty-free import limit for goods brought into the republic by individuals for personal, non-commercial use by air is set at USD 1,000. This limit does not apply if the person stayed abroad less than three calendar days, or entered 3 or more times within one calendar month.”",
         zh:"「个人因私非商业目的经航空运输携带入境物品的免税限额定为 1000 美元。若在外国停留少于三个日历日，或在一个日历月内入境 3 次及以上，则不适用该限额。」" } },
-      { hIco:"calDay", h:{ uz:"Kalendar kun nima?", ru:"Что такое календарный день?", en:"What is a calendar day?", zh:"什么是日历日？" } },
+      { h:{ uz:"Kalendar kun nima?", ru:"Что такое календарный день?", en:"What is a calendar day?", zh:"什么是日历日？" }, ico:"calday" },
       { note:{
         uz:"Kalendar kun – kalendar jadvalda belgilangan kun bo‘lib, uzluksiz 24 soatlik davrni anglatadi va unda hech qanday kunlar (“dam olish”, “bayram” yoki “bank kuni” kabi) istisno qilinmaydi. Ya’ni chet davlatda to‘liq bo‘lgan 3 kuningiz e’tiborga olinadi.",
         ru:"Календарный день — обозначенный в календаре день, означающий непрерывный 24-часовой период, при этом никакие дни (например, «выходные», «праздничные» или «банковские») не исключаются. То есть учитываются 3 полных дня, проведённые за рубежом.",
@@ -41,7 +41,7 @@ DATA.airport_in = [
         ru:"Например, вы вылетели 1 января в 10:00 и вернулись 5 января в 15:00. Значит, вы полностью (с 00:00 до 23:59) находились за рубежом 2, 3 и 4 января — льгота предоставляется. Если бы вы вернулись 4 января, льгота не применялась бы.",
         en:"For example, you flew out on 1 January at 10:00 and returned on 5 January at 15:00. So you were fully abroad (00:00–23:59) on 2, 3 and 4 January — you get the allowance. Had you returned on 4 January, it would not apply.",
         zh:"例如，您于 1 月 1 日 10:00 出境，1 月 5 日 15:00 返回。即您在 1 月 2、3、4 日完整地（00:00 至 23:59）身处境外——可享受免税。若您在 1 月 4 日返回，则不适用。" } },
-      { hIco:"calMonth", h:{ uz:"Kalendar oy nima?", ru:"Что такое календарный месяц?", en:"What is a calendar month?", zh:"什么是日历月？" } },
+      { h:{ uz:"Kalendar oy nima?", ru:"Что такое календарный месяц?", en:"What is a calendar month?", zh:"什么是日历月？" }, ico:"calmonth" },
       { note:{
         uz:"Kalendar oy – kalendar jadvalda belgilangan oy bo‘lib, oyning 1-sanasidan boshlab so‘nggi sanasigacha bo‘lgan uzluksiz davrni anglatadi. Misol uchun, 1-yanvardan 31-yanvargacha.",
         ru:"Календарный месяц — обозначенный в календаре месяц, означающий непрерывный период с 1-го по последнее число месяца. Например, с 1 по 31 января.",
@@ -88,12 +88,12 @@ DATA.airport_in = [
       zh:"个人（非商业）或商业用途依据物品性质、数量、频次和出行情况判定。" },
     legal: [
       { ico:"noncommercial", tone:"ok", note:{
-        uz:"“<span class='tx-ok'>Notijorat maqsadlar uchun tovarlar</span> — jismoniy shaxslar tomonidan bojxona chegarasi orqali olib oʻtiladigan shaxsiy, oilaviy (ota-onasi, turmush oʻrtogʻi va farzandlari) ehtiyojlari uchun moʻljallangan hamda tadbirkorlik yoki boshqa tijorat faoliyatini amalga oshirish bilan bogʻliq boʻlmagan tovarlar;”",
+        uz:"<span class='tx-ok'>Notijorat maqsadlar uchun tovarlar</span> — jismoniy shaxslar tomonidan bojxona chegarasi orqali olib oʻtiladigan shaxsiy, oilaviy (ota-onasi, turmush oʻrtogʻi va farzandlari) ehtiyojlari uchun moʻljallangan hamda tadbirkorlik yoki boshqa tijorat faoliyatini amalga oshirish bilan bogʻliq boʻlmagan tovarlar",
         ru:"«<span class='tx-ok'>товары для некоммерческих целей</span> — товары, перемещаемые физическими лицами через таможенную границу, предназначенные для личных, семейных (родителей, супруга и детей) нужд и не связанные с осуществлением предпринимательской или иной коммерческой деятельности;»",
         en:"“<span class='tx-ok'>goods for non-commercial purposes</span> — goods moved across the customs border by individuals, intended for personal and family (parents, spouse and children) needs and not related to entrepreneurial or other commercial activity;”",
         zh:"「<span class='tx-ok'>非商业目的物品</span>——由个人经海关边境携带、用于个人及家庭（父母、配偶和子女）需要，且与经营或其他商业活动无关的物品；」" } },
       { ico:"commercial", tone:"warn", note:{
-        uz:"“<span class='tx-warn'>Tijorat maqsadlar uchun tovarlar</span> — bojxona chegarasi orqali olib oʻtiladigan ishlab chiqarish, tadbirkorlik yoki boshqa tijorat faoliyati uchun moʻljallangan tovarlar.”",
+        uz:"<span class='tx-warn'>Tijorat maqsadlar uchun tovarlar</span> — bojxona chegarasi orqali olib oʻtiladigan ishlab chiqarish, tadbirkorlik yoki boshqa tijorat faoliyati uchun moʻljallangan tovarlar",
         ru:"«<span class='tx-warn'>товары для коммерческих целей</span> — товары, перемещаемые через таможенную границу, предназначенные для производственной, предпринимательской или иной коммерческой деятельности.»",
         en:"“<span class='tx-warn'>goods for commercial purposes</span> — goods moved across the customs border, intended for manufacturing, entrepreneurial or other commercial activity.”",
         zh:"「<span class='tx-warn'>商业目的物品</span>——经海关边境携带、用于生产、经营或其他商业活动的物品。」" } },
@@ -125,8 +125,8 @@ DATA.airport_in = [
   {
     id: "in-currency", icon: "banknote", type: "info", tag:"100 mln",
     facts: [
-      { v:{uz:"Cheklanmagan",ru:"Без лимита",en:"Unlimited",zh:"不限"}, l:{uz:"Miqdorda naqd valyuta olib kirish mumkin",ru:"Ввоз наличной валюты",en:"Bringing in cash",zh:"携带现金入境"} },
-      { v:"100 mln", l:{uz:"so‘mdan ortig‘i — deklaratsiya",ru:"свыше сумов — декларация",en:"above this — declare",zh:"超过需申报"} }
+      { v:{uz:"Cheklanmagan",ru:"Без лимита",en:"Unlimited",zh:"不限"}, ico:"cashunlimited", l:{uz:"Miqdorda naqd valyuta olib kirish mumkin",ru:"Ввоз наличной валюты",en:"Bringing in cash",zh:"携带现金入境"} },
+      { v:"100 mln", ico:"cashstack", l:{uz:"so‘mdan ortig‘i — deklaratsiya",ru:"свыше сумов — декларация",en:"above this — declare",zh:"超过需申报"} }
     ],
     title: { uz:"Valyuta olib kirish", ru:"Ввоз валюты", en:"Bringing in currency", zh:"携带货币入境" },
     short: {
@@ -243,9 +243,7 @@ DATA.airport_in = [
   },
   {
     id: "in-mobile", icon: "smartphone", type: "warning", tag:"×2", legalFirst:true,
-    facts: [
-      { v:"2", l:{uz:"qurilma (har kelishda)",ru:"устройства (на въезд)",en:"devices (per entry)",zh:"台（每次入境）"} }
-    ],
+    facts: [],
     title: { uz:"Mobil qurilmalar", ru:"Мобильные устройства", en:"Mobile devices", zh:"移动设备" },
     short: {
       uz:"Mobil qurilmalar bojsiz me’yordan qat’i nazar deklaratsiya qilinadi. Aviatsiya punktida norma — 2 dona (har kelishda).",
@@ -327,7 +325,7 @@ DATA.airport_in = [
     ]
   },
   {
-    id: "in-prohibited", icon: "ban", type: "danger", link: "prohibited",
+    id: "in-prohibited", icon: "ban", type: "danger", proScope: "all",
     title: { uz:"Taqiqlangan va cheklangan tovarlar", ru:"Запрещённые и ограниченные товары", en:"Prohibited & restricted goods", zh:"禁止和限制物品" },
     short: {
       uz:"Qidiruvli to‘liq ro‘yxat: taqiqlangan (qizil) va cheklangan (amber) tovarlar, huquqiy asoslari bilan.",
@@ -341,7 +339,7 @@ DATA.airport_out = [
   {
     id: "out-duty-free", icon: "taxfree", type: "success", importantTone:"warn", tag:"5 000 $",
     facts: [
-      { ico:"taxfree", v:"5 000 $", l:{uz:"Ekvivalentida deklaratsiyasiz olib chiqish mumkin",ru:"Эквивалент — вывоз без декларации",en:"Equivalent — export without declaration",zh:"等值——可免申报出境"} }
+      { v:"5 000 $", ico:"nodeclbig", l:{uz:"Ekvivalentida deklaratsiyasiz olib chiqish mumkin",ru:"Эквивалент — вывоз без декларации",en:"Equivalent — export without declaration",zh:"等值——可免申报出境"} }
     ],
     title: { uz:"Bojsiz olib chiqish", ru:"Беспошлинный вывоз", en:"Duty-free export", zh:"免税出境" },
     short: {
@@ -394,7 +392,7 @@ DATA.airport_out = [
   {
     id: "out-currency", icon: "banknote", type: "info", tag:"100 mln",
     facts: [
-      { v:"100 mln", l:{uz:"so‘mgacha — cheklovsiz",ru:"до сумов — без лимита",en:"soms — unlimited",zh:"苏姆以内——不限"} }
+      { v:"100 mln", ico:"cashstack", l:{uz:"so‘mgacha — cheklovsiz",ru:"до сумов — без лимита",en:"soms — unlimited",zh:"苏姆以内——不限"} }
     ],
     title: { uz:"Valyuta olib chiqish", ru:"Вывоз валюты", en:"Taking out currency", zh:"携带货币出境" },
     short: {
@@ -437,12 +435,12 @@ DATA.airport_out = [
   {
     id: "out-jewelry", icon: "gem", type: "info", tag:"65 / 200 g",
     facts: [
-      { v:"65 g", l:{uz:"Oltin (tayyor zargarlik buyumi) — deklaratsiyasiz",ru:"Золото — без декл.",en:"Gold — no declaration",zh:"黄金——无需申报"} },
-      { v:"200 g", l:{uz:"Kumush (tayyor zargarlik buyumi) — deklaratsiyasiz",ru:"Серебро — без декл.",en:"Silver — no declaration",zh:"白银——无需申报"} }
+      { v:"65 g", icoImg:"assets/icons/jewelry-gold.png", l:{uz:"Oltin (tayyor zargarlik buyumi) — deklaratsiyasiz",ru:"Золото — без декл.",en:"Gold — no declaration",zh:"黄金——无需申报"} },
+      { v:"200 g", icoImg:"assets/icons/jewelry-silver.png", l:{uz:"Kumush (tayyor zargarlik buyumi) — deklaratsiyasiz",ru:"Серебро — без декл.",en:"Silver — no declaration",zh:"白银——无需申报"} }
     ],
     title: { uz:"Zargarlik buyumlari", ru:"Ювелирные изделия", en:"Jewellery", zh:"珠宝首饰" },
     short: {
-      uz:"Kumush 200 grammgacha, oltin va boshqa qimmatbaho metallar 65 grammgacha deklaratsiyasiz olib chiqiladi.",
+      uz:"Tayyor zargarlik buyumi:<br>- 200 grammgacha boʻlgan kumushdan<br>- 65 grammgacha boʻlgan oltin va boshqa qimmatbaho metallardan yasalgan tayyor zargarlik buyumlarini deklaratsiyasiz olib chiqish mumkin.",
       ru:"Серебро до 200 г, золото и др. драгметаллы до 65 г — без декларации.",
       en:"Silver up to 200 g, gold and other precious metals up to 65 g — without declaration.",
       zh:"白银不超过 200 克、黄金及其他贵金属不超过 65 克——无需申报。" },
@@ -469,7 +467,7 @@ DATA.airport_out = [
       zh:"出境时，对超限物品及须书面申报的货币填写申报单。" },
     legal: [
       { frame:"green", frameIco:"declofficer", p:{
-        uz:"<b class='tx-ok'>Deklaratsiya qogʻoz shaklda yoki elektron shaklda bojxona hududidan chiqqunga qadar toʻldiriladi.</b> Respublika hududidan tovarlarni olib chiqishning cheklangan meʼyoridan oshadigan tovarlarga hamda yozma deklaratsiyalanishi lozim boʻlgan naqd valyutaga toʻldiriladi.",
+        uz:"<b class='tx-ok'>Deklaratsiya bojxona hududidan chiqqunga qadar toʻldiriladi:</b><br>- olib chiqishning cheklangan meʼyoridan oshadigan tovarlarga<br>- yozma deklaratsiyalanishi lozim boʻlgan naqd valyutaga",
         ru:"«Декларация заполняется в бумажной или электронной форме.» Заполняется на товары, превышающие ограниченную норму вывоза с территории республики, а также на наличную валюту, подлежащую письменному декларированию.",
         en:"“The declaration is filled in on paper or electronically.” It is filled for goods exceeding the export limit from the republic and for cash currency subject to written declaration.",
         zh:"「申报单以纸质或电子形式填写。」适用于超出从境内携出限额的物品以及须书面申报的现金外币。" } },
@@ -490,7 +488,7 @@ DATA.airport_out = [
       en:"For personal use within a treatment course in set limits; some require a medical document.",
       zh:"在疗程范围内供个人使用，按规定数量；部分需医疗证明。" },
     legal: [
-      { frame:"red", p:{
+      { frame:"red", frameIco:"prescription", p:{
         uz:"Shaxsiy foydalanish uchun:<br>- turli nomdagi <b class='tx-warn'>10 tagacha</b> dori preparati (har biri uchun <b class='tx-warn'>5 oʻramdan</b> ortiq emas) va<br>- <b class='tx-warn'>5 birlikdan</b> ortiq boʻlmagan tibbiy buyumlar <b class='tx-red'>(tibbiy hujjatsiz)</b>.",
         ru:"Для личного пользования:<br>- до <b class='tx-warn'>10 наименований</b> лекарственных препаратов (не более <b class='tx-warn'>5 упаковок</b> каждого) и<br>- не более <b class='tx-warn'>5 единиц</b> медицинских изделий <b class='tx-red'>(без медицинского документа)</b>.",
         en:"For personal use:<br>- up to <b class='tx-warn'>10 named medicines</b> (no more than <b class='tx-warn'>5 packages</b> of each) and<br>- no more than <b class='tx-warn'>5 units</b> of medical devices <b class='tx-red'>(without a medical document)</b>.",
@@ -511,7 +509,7 @@ DATA.airport_out = [
     ]
   },
   {
-    id: "out-prohibited", icon: "ban", type: "danger", link: "prohibited",
+    id: "out-prohibited", icon: "ban", type: "danger", proScope: "all",
     title: { uz:"Taqiqlangan va cheklangan tovarlar", ru:"Запрещённые и ограниченные товары", en:"Prohibited & restricted goods", zh:"禁止和限制物品" },
     short: {
       uz:"Qidiruv va rangli status badge bilan to‘liq ro‘yxat.",

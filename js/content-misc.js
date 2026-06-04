@@ -5,7 +5,7 @@ window.DATA = window.DATA || {};
 
 DATA.mobile_steps = [
   {
-    icon: "doc",
+    icon: "doc", icoImg:"assets/icons/step-declare.png",
     title: { uz:"Deklaratsiyada ko‘rsatish", ru:"Указать в декларации", en:"Declare the device", zh:"在申报单中申报" },
     text: {
       uz:"Mobil qurilma yo‘lovchi bojxona deklaratsiyasida yoki jo‘natmalar deklaratsiyasida ko‘rsatilgan bo‘lishi kerak.<br>Yoʻlovchi bojxona deklaratsiyasini onlayn toʻldirish uchun ilovani yuklab oling:",
@@ -18,7 +18,7 @@ DATA.mobile_steps = [
     ]
   },
   {
-    icon: "search",
+    icon: "search", icoImg:"assets/icons/step-check.png",
     title: { uz:"Rasmiylashtirishni tekshirish", ru:"Проверить оформление", en:"Check clearance status", zh:"查询清关状态" },
     text: {
       uz:"Bojxonada rasmiylashtirilganlik holatini tekshiring.",
@@ -28,7 +28,7 @@ DATA.mobile_steps = [
     link: { url:"https://uzimei.customs.uz", label:"uzimei.customs.uz" }
   },
   {
-    icon: "smartphone",
+    icon: "smartphone", icoImg:"assets/icons/step-apply.png",
     title: { uz:"Ariza qoldirish", ru:"Подать заявление", en:"Submit an application", zh:"提交申请" },
     text: {
       uz:"Agar qurilma bojxonada rasmiylashtirilmagan bo‘lsa, ariza qoldirishingiz mumkin (umumiy qiymatidan yagona bojxona to‘lovi undiriladi).",
@@ -38,7 +38,7 @@ DATA.mobile_steps = [
     link: { url:"https://imei.customs.uz", label:"imei.customs.uz" }
   },
   {
-    icon: "shield",
+    icon: "shield", icoImg:"assets/icons/uzimei-glyph.png",
     title: { uz:"UZIMEI ro‘yxatdan o‘tkazish", ru:"Регистрация в UZIMEI", en:"Register in UZIMEI", zh:"在 UZIMEI 注册" },
     text: {
       uz:"UZIMEI ro‘yxatdan o‘tkazishning bir necha yo‘li mavjud:",

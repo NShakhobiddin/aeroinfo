@@ -86,26 +86,24 @@ window.fmtUSD = function(n){
 window.fmtKg = function(n){
   return (Math.round(n*100)/100).toLocaleString('en-US',{minimumFractionDigits:0, maximumFractionDigits:2});
 };
+// rate with 2 decimals, e.g. "11 935,27"
+window.fmtRate = function(n){
+  return (Math.round(n*100)/100).toLocaleString('ru-RU',{minimumFractionDigits:2, maximumFractionDigits:2}).replace(/\u00A0/g,' ');
+};
 
 /* ---- Markaziy bank (CBU) USD kursini avtomatik olish ---- */
-// Eslatma: so‘rov hech qachon cheksiz osilib qolmasligi uchun 7 soniyalik
-// timeout qo‘yilgan — internet sekin yoki bloklangan boʻlsa, qoʻlda kiritishga
-// silliq qaytadi.
 window.fetchCbuUsd = function(cb){
   var done = false;
   function finish(rate, date){ if(done) return; done = true; cb && cb(rate, date); }
+  // timeout guard — if the network hangs / is blocked, fail gracefully after 7s
+  var timer = setTimeout(function(){ finish(null); }, 7000);
   try{
-    var ctrl = (typeof AbortController !== "undefined") ? new AbortController() : null;
-    var timer = setTimeout(function(){
-      if(ctrl){ try{ ctrl.abort(); }catch(e){} }
-      finish(null);
-    }, 7000);
-    fetch("https://cbu.uz/uz/arkhiv-kursov-valyut/json/USD/", { cache:"no-store", signal: ctrl ? ctrl.signal : undefined })
+    fetch("https://cbu.uz/uz/arkhiv-kursov-valyut/json/USD/", { cache:"no-store" })
       .then(function(r){ return r.json(); })
       .then(function(d){
         clearTimeout(timer);
         var item = Array.isArray(d) ? d[0] : d;
-        var rate = item && item.Rate ? Math.round(parseFloat(item.Rate)) : 0;
+        var rate = item && item.Rate ? parseFloat(item.Rate) : 0;
         if(rate > 0){
           try{
             localStorage.setItem("aero_rate", String(rate));
@@ -117,5 +115,5 @@ window.fetchCbuUsd = function(cb){
         } else { finish(null); }
       })
       .catch(function(){ clearTimeout(timer); finish(null); });
-  }catch(e){ finish(null); }
+  }catch(e){ clearTimeout(timer); finish(null); }
 };

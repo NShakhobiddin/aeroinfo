@@ -6,6 +6,13 @@
    ============================================================ */
 window.DATA = window.DATA || {};
 
+window.PRO_ICONS = {
+  1:"narcotics", 2:"weapon", 3:"radio", 4:"religion", 5:"wildanimal",
+  6:"fertilizer", 7:"chemical", 8:"cultural", 9:"animalfood", 10:"vape",
+  11:"explosive", 12:"gambling", 13:"explosive", 14:"laser", 15:"drone",
+  16:"furnace", 17:"extremist", 18:"currency", 19:"liveanimal", 20:"valuables"
+};
+
 DATA.prohibited = [
   { num:1, status:"prohibited", scope:"all", basis:"VMQ 330-son, 1-band, 5–7-ilovalar",
     name:{uz:"Giyohvandlik vositalari, psixotrop moddalar, prekursorlar",ru:"Наркотические средства, психотропные вещества, прекурсоры",en:"Narcotic drugs, psychotropic substances, precursors",zh:"麻醉药品、精神药物、前体"},

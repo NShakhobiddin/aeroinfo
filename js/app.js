@@ -87,7 +87,7 @@
           <h1>${t("hero_title")}</h1>
           <p class="hero-lead">${t("hero_lead")}</p>
           <div class="hero-cta">
-            <button class="btn btn-primary" data-nav="#/airport">${t("hero_cta")} ${ic("arrowRight")}</button>
+            <button class="btn btn-primary" data-scroll="home-sections">${t("hero_cta")} ${ic("arrowRight")}</button>
             <button class="btn btn-ghost" data-nav="#/calc">${ic("calculator")} ${t("hero_cta2")}</button>
           </div>
         </div>
@@ -99,7 +99,7 @@
         </div>
       </div>
     </section>
-    <section class="section wrap">
+    <section class="section wrap" id="home-sections">
       <div class="section-head">
         <div><h2>${t("sections_title")}</h2><p>${t("sections_sub")}</p></div>
       </div>
@@ -118,8 +118,8 @@
   }
 
   /* illustrated banner for section pages */
-  function banner(illoKey, tone, capObj){
-    return `<div class="page-banner ${tone||''} reveal">
+  function banner(illoKey, tone, capObj, extraCls){
+    return `<div class="page-banner ${tone||''} ${extraCls||''} reveal">
       <div class="pb-illo">${window.ILLO[illoKey]||''}</div>
       <div class="pb-cap">${ic("info")}<span>${L(capObj)}</span></div>
     </div>`;
@@ -153,15 +153,15 @@
     "airport-in": { illo:"greenChannel", tone:"green",
       badge:{uz:"Aeroport — Kirish",ru:"Аэропорт — Въезд",en:"Airport — Entry",zh:"机场——入境"},
       title:{uz:"Kirish",ru:"Въезд",en:"Entry",zh:"入境"},
-      text:{uz:"Xalqaro aeroportlar orqali uchib kelishda rioya qilishingiz talab etiladigan bojxona qoidalari bilan tanishing.<br>Chap menyudan kerakli qoidani tanlang.",ru:"Каждый прибывший в международный аэропорт пассажир проходит въезд с соблюдением таможенных правил. Выберите нужное правило в меню слева.",en:"Every passenger arriving at the international airport passes through entry in line with customs rules. Pick a rule from the left menu.",zh:"每位抵达国际机场的旅客均按海关规则办理入境。请从左侧菜单选择规则。"} },
+      text:{uz:"Xalqaro aeroportlar orqali uchib kelishda rioya qilishingiz talab etiladigan bojxona qoidalari bilan tanishing.",ru:"Каждый прибывший в международный аэропорт пассажир проходит въезд с соблюдением таможенных правил. Выберите нужное правило в меню слева.",en:"Every passenger arriving at the international airport passes through entry in line with customs rules. Pick a rule from the left menu.",zh:"每位抵达国际机场的旅客均按海关规则办理入境。请从左侧菜单选择规则。"} },
     "airport-out": { illo:"departure", tone:"",
       badge:{uz:"Aeroport — Chiqish",ru:"Аэропорт — Выезд",en:"Airport — Exit",zh:"机场——出境"},
       title:{uz:"Chiqish",ru:"Выезд",en:"Exit",zh:"出境"},
-      text:{uz:"Aeroportdan chiqish jarayonida bojxona qoidalari va cheklovlariga rioya qilish muhim. Chap menyudan kerakli qoidani tanlang.",ru:"При выезде из аэропорта важно соблюдать таможенные правила и ограничения. Выберите нужное правило в меню слева.",en:"When leaving the airport it is important to follow customs rules and limits. Pick a rule from the left menu.",zh:"离开机场时务必遵守海关规则和限制。请从左侧菜单选择规则。"} },
+      text:{uz:"Aeroportdan chiqish jarayonida bojxona qoidalari va cheklovlariga rioya qilish muhim.",ru:"При выезде из аэропорта важно соблюдать таможенные правила и ограничения. Выберите нужное правило в меню слева.",en:"When leaving the airport it is important to follow customs rules and limits. Pick a rule from the left menu.",zh:"离开机场时务必遵守海关规则和限制。请从左侧菜单选择规则。"} },
     "post": { illo:"globe", tone:"",
       badge:{uz:"Pochta va kuryerlik",ru:"Почта и курьер",en:"Post & courier",zh:"邮政与快递"},
-      title:{uz:"Xalqaro pochta va kuryerlik jo‘natmalari",ru:"Международные почтовые и курьерские отправления",en:"International postal & courier shipments",zh:"国际邮政和快递包裹"},
-      text:{uz:"Xalqaro pochta va kuryerlik jo‘natmalari uchun bojxona to‘lovsiz va belgilangan me’yorlar doirasida tovarlarni olib kirish mumkin. Chap menyudan kerakli qoidani tanlang.",ru:"Через международные почтовые и курьерские отправления можно ввозить товары без пошлин в пределах установленных норм. Выберите нужное правило в меню слева.",en:"Through international postal and courier shipments goods may be imported duty-free within set limits. Pick a rule from the left menu.",zh:"通过国际邮政和快递可在规定限额内免税进口商品。请从左侧菜单选择规则。"} }
+      title:{uz:"Xalqaro pochta va<br>kuryerlik jo‘natmalari",ru:"Международные почтовые и курьерские отправления",en:"International postal & courier shipments",zh:"国际邮政和快递包裹"},
+      text:{uz:"Xalqaro pochta va kuryerlik jo‘natmalari uchun bojxona to‘lovsiz va belgilangan me’yorlar doirasida tovarlarni olib kirish mumkin.",ru:"Через международные почтовые и курьерские отправления можно ввозить товары без пошлин в пределах установленных норм. Выберите нужное правило в меню слева.",en:"Through international postal and courier shipments goods may be imported duty-free within set limits. Pick a rule from the left menu.",zh:"通过国际邮政和快递可在规定限额内免税进口商品。请从左侧菜单选择规则。"} }
   };
 
   function ruleSidebarView(list, key, headIcon, titleObj, leadObj){
@@ -178,11 +178,6 @@
 
   function ruleNavItems(){
     return ruleState.list.map((r,i)=>{
-      if(r.link){
-        const route = r.link === "prohibited-post" ? "#/prohibited-post" : "#/prohibited";
-        return `<button class="rn-item rt-${r.type}" data-nav="${route}">
-          <span class="rn-ico">${ic(r.icon)}</span><span class="rn-t">${L(r.title)}</span><span class="rn-chev">${ic("arrowRight")}</span></button>`;
-      }
       return `<button class="rn-item ${i===ruleState.idx?'active':''}" data-rule-idx="${i}">
         <span class="rn-ico">${ic(r.icon)}</span><span class="rn-t">${L(r.title)}</span>
         ${r.tag?`<span class="rn-tag rt-${r.type}">${r.tag}</span>`:`<span class="rn-chev">${ic("arrowRight")}</span>`}</button>`;
@@ -191,7 +186,8 @@
 
   function ruleOverview(){
     const o = ruleState.overview || {};
-    return `<div class="rc-overview">
+    const exitCls = ruleState.key==="airport-out" ? " rc-overview-exit" : (ruleState.key==="airport-in" ? " rc-overview-entry" : (ruleState.key==="post" ? " rc-overview-post" : ""));
+    return `<div class="rc-overview${exitCls}">
       <div class="rc-otext">
         ${o.badge?`<span class="rc-badge">${L(o.badge)}</span>`:""}
         <h2>${L(o.title)}</h2>
@@ -209,7 +205,7 @@
       : "";
     if(r.legalFirst) body += legalBlock;
     if(r.facts && r.facts.length){
-      body += `<div class="facts">${r.facts.map(f=>`<div class="fact${f.ico?' fact-ico-row':''}">${f.ico?`<span class="fact-ico">${ic(f.ico)}</span>`:""}<div class="fv">${typeof f.v==="string"?f.v:L(f.v)}</div><div class="fl">${L(f.l)}</div></div>`).join("")}</div>`;
+      body += `<div class="facts">${r.facts.map(f=>`<div class="fact${(f.ico||f.icoImg)?' fact-ico-row':''}">${f.ico?`<span class="fact-ico">${ic(f.ico)}</span>`:(f.icoImg?`<img class="fact-ico-img" src="${window.__res(f.icoImg)}" alt="" />`:"")}<div class="fact-text"><div class="fv">${typeof f.v==="string"?f.v:L(f.v)}</div><div class="fl">${L(f.l)}</div></div></div>`).join("")}</div>`;
     }
     if(r.important){
       const cl = r.importantTone || (r.type==="danger" ? "danger" : (r.type==="warning" ? "warn" : (r.type==="success"?"ok":"info")));
@@ -227,7 +223,7 @@
   }
 
   function ruleDetail(r){
-    return `<div class="rc-detail rt-${r.type}">
+    return `<div class="rc-detail rt-${r.type} rule-${r.id}">
       <div class="rc-dhead">
         <span class="rule-ico">${ic(r.icon)}</span>
         <div class="rc-dtitle"><h2>${L(r.title)}</h2><p class="rc-short">${L(r.short)}</p></div>
@@ -236,6 +232,33 @@
       <div class="rc-bodywrap">${ruleBody(r)}</div>
     </div>`;
   }
+
+  /* prohibited list rendered inline inside the rule-detail pane */
+  function prohibitedDetail(r){
+    const scope = r.proScope === "post" ? "post" : "all";
+    proState = { q:"", filter:"all", scope:scope };
+    const lead = r.short || (scope==="post"
+      ? {uz:"Jo‘natmalar orqali olib o‘tish taqiqlangan va cheklangan tovarlar ro‘yxati.",ru:"Список товаров, запрещённых и ограниченных к перемещению в отправлениях.",en:"List of goods prohibited and restricted in shipments.",zh:"邮寄中禁止和限制的物品清单。"}
+      : {uz:"Qidiruv va status bo‘yicha filtrlash mumkin. Huquqiy asos har bir tovar ostida ko‘rsatilgan.",ru:"Можно искать и фильтровать по статусу. Правовое основание указано под каждым товаром.",en:"Search and filter by status. The legal basis is shown under each item.",zh:"可按状态搜索和筛选。每件物品下方注明法律依据。"});
+    return `<div class="rc-detail rt-${r.type} rule-${r.id}">
+      <div class="rc-dhead">
+        <span class="rule-ico">${ic(r.icon)}</span>
+        <div class="rc-dtitle"><h2 class="rc-title">${L(r.title)}</h2><p class="rc-short">${L(lead)}</p></div>
+      </div>
+      <div class="rc-bodywrap">
+        <div class="search-bar">
+          <label class="search-input">${ic("search")}<input id="pro-search" type="text" placeholder="${t("search_ph")}" /></label>
+        </div>
+        <div class="filters" id="pro-filters">
+          <button class="chip active" data-filter="all">${t("filter_all")}</button>
+          <button class="chip" data-filter="prohibited">${ic("ban")}${t("st_prohibited")}</button>
+          <button class="chip" data-filter="restricted">${ic("alert")}${t("st_restricted")}</button>
+        </div>
+        <div class="prohibited-list" id="pro-list">${renderProItems()}</div>
+      </div>
+    </div>`;
+  }
+  function renderRuleContent(r){ return r.proScope ? prohibitedDetail(r) : ruleDetail(r); }
 
   function renderLegal(blocks){
     return blocks.map(b=>{
@@ -249,7 +272,7 @@
           <p class="lane-text">${L(b.p)}</p>
         </div>`;
       }
-      if(b.h) return `<p class="lx-h"${b.hIco?'':' style="font-weight:700;color:var(--navy)"'}>${b.hIco?`<span class="lx-h-ico">${ic(b.hIco)}</span><span class="lx-h-tx">${L(b.h)}</span>`:L(b.h)}</p>`;
+      if(b.h) return `<p class="legal-h${b.ico?' legal-h-ico':''}" style="font-weight:700;color:var(--navy)">${b.ico?`<span class="legal-h-icon">${ic(b.ico)}</span>`:""}<span>${L(b.h)}</span></p>`;
       if(b.ul) return `<ul>${b.ul.map(li=>`<li>${L(li)}</li>`).join("")}</ul>`;
       if(b.note) return `<div class="legal-ex${b.tone?' tone-'+b.tone:''}">${ic(b.ico||"info")}<span>${L(b.note)}</span></div>`;
       if(b.ex) return `<div class="legal-ex ex">${ic("bulb")}<span>${L(b.ex)}</span></div>`;
@@ -263,6 +286,11 @@
       if(b.tgbot) return `<a class="tg-bot" href="${b.url||'https://t.me/'}" target="_blank" rel="noopener">
         <span class="tg-ico">${ic("telegram")}</span>
         <span class="tg-txt"><span class="tg-title">${L(b.title)}</span><span class="tg-sub">${L(b.sub)}</span></span>
+        ${ic("arrowRight")}
+      </a>`;
+      if(b.btn) return `<a class="legal-cta" href="${b.url||'#'}" target="_blank" rel="noopener">
+        <span class="legal-cta-ico">${ic(b.ico||"check")}</span>
+        <span class="legal-cta-txt"><span class="legal-cta-title">${L(b.btn)}</span>${b.sub?`<span class="legal-cta-sub">${L(b.sub)}</span>`:""}</span>
         ${ic("arrowRight")}
       </a>`;
       if(b.frame) return `<div class="legal-frame frame-${b.frame}">${b.frameIco?`<span class="legal-frame-ico">${ic(b.frameIco)}</span>`:""}<p>${L(b.p)}</p></div>`;
@@ -333,15 +361,12 @@
       const badgeCl = it.status==="prohibited" ? "danger" : "warn";
       const badgeIco = it.status==="prohibited" ? "ban" : "alert";
       const badgeTxt = it.status==="prohibited" ? t("st_prohibited") : t("st_restricted");
-      const pimg = proImg(it.num);
-      const upTitle = ({uz:"Rasm yuklash",ru:"Загрузить фото",en:"Upload image",zh:"上传图片"})[lang];
-      const rmTitle = ({uz:"Rasmni o‘chirish",ru:"Удалить фото",en:"Remove image",zh:"删除图片"})[lang];
-      const thumb = pimg
-        ? `<button class="pro-thumb has" type="button" data-proimg="${it.num}" title="${upTitle}"><img src="${pimg}" alt="" /><span class="pro-thumb-x" data-proimg-rm="${it.num}" role="button" tabindex="0" title="${rmTitle}" aria-label="${rmTitle}">${ic("close")}</span></button>`
-        : `<button class="pro-thumb" type="button" data-proimg="${it.num}" title="${upTitle}" aria-label="${upTitle}">${ic("image")}<span class="pro-thumb-plus">${ic("upload")}</span></button>`;
+      const proIcon = window.PRO_ICONS && window.PRO_ICONS[it.num];
+      const thumb = proIcon
+        ? `<span class="pro-thumb-ico ${badgeCl}"><img src="${window.__res('assets/icons/pro/'+proIcon+'.png')}" alt="" /></span>`
+        : `<span class="pro-num">${it.num}</span>`;
       return `<div class="pro-item">
         ${thumb}
-        <span class="pro-num">${it.num}</span>
         <div class="pro-main">
           <div class="pro-top">
             <div class="pro-name">${L(it.name)}</div>
@@ -397,31 +422,33 @@
     if(state==="loading") return `<span class="rs-load">${ic("clock")}<span>${L({uz:"Markaziy bank kursi yuklanmoqda…",ru:"Загрузка курса ЦБ…",en:"Loading the CBU rate…",zh:"正在加载央行汇率…"})}</span></span>`;
     if(state==="fail") return `<span class="rs-fail">${ic("alert")}<span>${L({uz:"Kursni avtomatik olish imkoni boʻlmadi — qoʻlda kiriting",ru:"Не удалось получить курс — введите вручную",en:"Couldn’t fetch the rate — enter it manually",zh:"无法自动获取汇率——请手动输入"})}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
     if(localStorage.getItem("aero_rate_auto")!=="1") return `<span class="rs-man">${ic("info")}<span>${L({uz:"Kursni yangilash uchun bosing",ru:"Нажмите, чтобы обновить курс",en:"Tap to refresh the rate",zh:"点击刷新汇率"})}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
-    return `<span class="rs-ok">${ic("check")}<span>${L({uz:"Markaziy bank kursi",ru:"Курс ЦБ РУз",en:"CBU official rate",zh:"乌兹央行官方汇率"})}: <b>${fmtSom(+rate)} ${t("som")}</b>${date?` · ${date}`:""}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
-  }
-  // Kurs maydonini rasmiy kursga moslaydi — foydalanuvchi qoʻlda
-  // oʻzgartirmagan boʻlsa (calcStore[fid]==null).
-  function syncRateField(rate){
-    if(rate==null || rate==="") return;
-    const fid = calcMode==="airport" ? "ci-rate" : "cp-rate";
-    if(calcStore[fid]==null){ const inp = document.getElementById(fid); if(inp) inp.value = rate; }
+    return `<span class="rs-ok">${ic("check")}<span>${L({uz:"Markaziy bank kursi",ru:"Курс ЦБ РУз",en:"CBU official rate",zh:"乌兹央行官方汇率"})}: <b>${fmtRate(+rate)} ${t("som")}</b>${date?` · ${date}`:""}</span></span><button class="rs-refresh" id="rate-refresh" type="button" aria-label="refresh">${ic("refresh")}</button>`;
   }
   function initCalcRate(){
     const status = document.getElementById("rate-status");
+    const fid = calcMode==="airport" ? "ci-rate" : "cp-rate";
+    // sync the rate input to the stored official rate (unless the user typed their own)
+    function syncField(){
+      if(calcStore[fid]==null){
+        const inp = document.getElementById(fid);
+        const stored = localStorage.getItem("aero_rate");
+        if(inp && stored){ inp.value = stored; }
+      }
+      const res = document.getElementById("calc-result"); if(res) res.innerHTML = calcResult();
+    }
     const ts = +(localStorage.getItem("aero_rate_ts")||0);
     const fresh = (Date.now() - ts) < 6*3600*1000;
     if(fresh && localStorage.getItem("aero_rate_auto")==="1"){
       if(status) status.innerHTML = rateStatusHtml("ok");
-      syncRateField(localStorage.getItem("aero_rate")); // kesh yangi boʻlsa ham maydonni moslab qoʻyamiz
+      syncField();
       return;
     }
     if(status) status.innerHTML = rateStatusHtml("loading");
     window.fetchCbuUsd(function(rate){
       const st = document.getElementById("rate-status");
       if(rate){
-        syncRateField(rate);
         if(st) st.innerHTML = rateStatusHtml("ok");
-        const res = document.getElementById("calc-result"); if(res) res.innerHTML = calcResult();
+        syncField();
       } else {
         if(st) st.innerHTML = rateStatusHtml("fail");
       }
@@ -472,7 +499,7 @@
   function mobileView(){
     return `${pageHead("smartphone", TITLES["#/mobile"], {uz:"Mobil qurilmani rasmiylashtirish",ru:"4 шага оформления мобильного устройства.",en:"4 steps to clear a mobile device.",zh:"移动设备清关的 4 个步骤。"})}
     <section class="section wrap" style="padding-top:10px">
-      ${banner("phone","",{uz:"Telefon, planshet va mobil aloqa moduliga ega qurilmalar deklaratsiyalanadi.",ru:"Декларируются телефоны, планшеты и устройства с модулем мобильной связи.",en:"Phones, tablets and devices with a mobile-communication module are declared.",zh:"电话、平板及带移动通信模块的设备均须申报。"})}
+      ${banner("phone","",{uz:"Telefon, planshet va mobil aloqa moduliga ega qurilmalar deklaratsiyalanadi",ru:"Декларируются телефоны, планшеты и устройства с модулем мобильной связи.",en:"Phones, tablets and devices with a mobile-communication module are declared.",zh:"电话、平板及带移动通信模块的设备均须申报。"},"banner-mobile")}
       <a class="video-guide" href="https://docs.google.com/videos/d/1nag42Fjy_9knvgr1s2N-8QE9MXGMgK6y-xuXYnmM4_s/edit?usp=sharing" target="_blank" rel="noopener">
         <span class="vg-ico">${ic("play")}</span>
         <span class="vg-txt">
@@ -492,7 +519,7 @@
               : `<span class="step-way">${inner}</span>`;
           }).join("")}</div>`;
           return `<div class="step reveal">
-            <span class="step-num">${i+1}</span>
+            <span class="step-ico">${s.icoImg?`<img src="${window.__res(s.icoImg)}" alt="" />`:''}<span class="step-ico-num">${i+1}</span></span>
             <div class="step-main">
               <h3>${L(s.title)}</h3>
               <p>${L(s.text)}</p>
@@ -673,6 +700,13 @@
     }
     const nav = e.target.closest("[data-nav]");
     if(nav){ e.preventDefault(); navigate(nav.getAttribute("data-nav")); return; }
+    const scrollTo = e.target.closest("[data-scroll]");
+    if(scrollTo){
+      e.preventDefault();
+      const el = document.getElementById(scrollTo.getAttribute("data-scroll"));
+      if(el){ const top = el.getBoundingClientRect().top + window.scrollY - 70; window.scrollTo({top:top, behavior:"smooth"}); }
+      return;
+    }
     const back = e.target.closest("[data-back]");
     if(back){ e.preventDefault(); history.length>1 ? history.back() : navigate("#/"); return; }
     const toggle = e.target.closest("[data-toggle]");
@@ -688,7 +722,7 @@
       const content = document.getElementById("rule-content");
       if(content){
         content.classList.remove("seen"); content.classList.add("reveal");
-        content.innerHTML = ruleDetail(ruleState.list[ruleState.idx]);
+        content.innerHTML = renderRuleContent(ruleState.list[ruleState.idx]);
         requestAnimationFrame(()=>content.classList.add("seen"));
       }
       document.querySelectorAll("#rule-nav .rn-item").forEach(el=>{
