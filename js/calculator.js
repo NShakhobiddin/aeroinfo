@@ -103,7 +103,7 @@ window.fetchCbuUsd = function(cb){
       .then(function(d){
         clearTimeout(timer);
         var item = Array.isArray(d) ? d[0] : d;
-        var rate = item && item.Rate ? parseFloat(item.Rate) : 0;
+        var rate = item && item.Rate ? Math.round(parseFloat(item.Rate)*100)/100 : 0;
         if(rate > 0){
           try{
             localStorage.setItem("aero_rate", String(rate));

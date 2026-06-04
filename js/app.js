@@ -403,7 +403,7 @@
     return `<div class="field"><label>${label}</label><div class="input"><input id="${id}" type="number" inputmode="decimal" min="0" value="${val!=null?val:''}" placeholder="${ph||'0'}"/><span class="unit">${unit}</span></div></div>`;
   }
   function calcFields(){
-    const rate = localStorage.getItem("aero_rate") || "11970";
+    const rate = (+(localStorage.getItem("aero_rate") || 11970)).toFixed(2);
     if(calcMode==="airport"){
       return field("ci-val", t("calc_goods_val"), getV("ci-val"), "$") +
              field("ci-w", t("calc_weight"), getV("ci-w"), "kg") +
@@ -432,7 +432,7 @@
       if(calcStore[fid]==null){
         const inp = document.getElementById(fid);
         const stored = localStorage.getItem("aero_rate");
-        if(inp && stored){ inp.value = stored; }
+        if(inp && stored){ inp.value = (+stored).toFixed(2); }
       }
       const res = document.getElementById("calc-result"); if(res) res.innerHTML = calcResult();
     }
