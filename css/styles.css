@@ -1243,3 +1243,19 @@ body{ padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inse
   .pro-thumb-ico{ width:56px; height:56px; }
   .pro-thumb-ico img{ width:34px; height:34px; }
 }
+
+/* ============================================================
+   PROHIBITED — compact search + filter controls on phones
+   ============================================================ */
+@media (max-width:560px){
+  .search-input{ padding:9px 15px; gap:8px; }
+  .search-input .icon{ width:18px; height:18px; }
+  /* input text stays 16px so iOS doesn't zoom on focus */
+  #pro-filters{ gap:8px; }
+  #pro-filters .chip{ padding:7px 12px; font-size:12.5px; min-height:34px; gap:6px; }
+  #pro-filters .chip .icon{ width:15px; height:15px; }
+}
+@media (max-width:380px){
+  #pro-filters .chip{ padding:6px 10px; font-size:12px; }
+  #pro-filters .chip .icon{ width:14px; height:14px; }
+}
