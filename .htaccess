@@ -1,0 +1,30 @@
+# ── Toshkent-AERO static site (Apache / cPanel) ──────────────
+# Default document
+DirectoryIndex index.html
+
+# Gzip / deflate text assets
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+</IfModule>
+
+# Browser caching (CSS/JS are versioned with ?v=, so safe to cache long;
+# HTML stays fresh so new versions are picked up immediately)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html              "access plus 0 seconds"
+  ExpiresByType text/css               "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/webp             "access plus 30 days"
+  ExpiresByType image/png              "access plus 30 days"
+  ExpiresByType image/jpeg             "access plus 30 days"
+  ExpiresByType image/x-icon           "access plus 30 days"
+</IfModule>
+
+# ── Force HTTPS ──────────────────────────────────────────────
+# Enable this ONLY after you have turned on a (free) SSL certificate
+# in the Sayt.uz panel, otherwise the site will break. To enable,
+# remove the leading "# " from the four lines below:
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP_HOST} !^localhost [NC]
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
