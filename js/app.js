@@ -617,10 +617,19 @@
   }
 
   /* ---- shared page head + breadcrumb ---- */
+  /* hierarchical parent of a route — the back button always goes one level up */
+  function parentOf(hash){
+    hash = hash || "#/";
+    const detail = hash.match(/^#\/(airport\/in|airport\/out|post)\/\d+$/);
+    if(detail) return "#/" + detail[1];                 // a rule → its sub-section list
+    if(hash === "#/airport/in" || hash === "#/airport/out") return "#/airport"; // list → airport
+    if(hash === "#/prohibited-post") return "#/post";   // post-prohibited → post
+    return "#/";                                         // airport, post, calc, mobile, contacts, prohibited → home
+  }
   function pageHead(iconName, titleObj, leadObj, backHash){
     return `<div class="wrap">
       ${breadcrumb(titleObj)}
-      <button class="back-btn" ${backHash?`data-nav="${backHash}"`:"data-back"}>${ic("arrowLeft")} ${t("back")}</button>
+      <button class="back-btn" data-nav="${parentOf(location.hash)}">${ic("arrowLeft")} ${t("back")}</button>
       <div class="page-head">
         <div class="page-kicker">${ic(iconName)} ${t("brandName")}</div>
         <h1 class="page-title">${L(titleObj)}</h1>
