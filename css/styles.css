@@ -80,11 +80,12 @@ img,svg{ display:block; }
    INTRO ANIMATION
    ============================================================ */
 #intro{
-  position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
+  position:fixed; inset:0; height:100vh; height:100dvh; z-index:1000; display:grid; place-items:center;
+  background-color:var(--navy-tint-2);
   background:
     linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.28) 42%, rgba(255,255,255,.50) 100%),
     url("../assets/bg-home.webp") center bottom / cover no-repeat,
-    linear-gradient(180deg,#fff 0%, var(--navy-tint-2) 100%);
+    linear-gradient(180deg,#fff 0%, var(--navy-tint-2) 100%) var(--navy-tint-2);
   transition:opacity .7s ease, visibility .7s;
 }
 #intro.hide{ opacity:0; visibility:hidden; }

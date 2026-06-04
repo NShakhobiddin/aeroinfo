@@ -9,7 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=88" />
+<style>
+  /* critical fallback (overridden by styles.css): the entry splash covers the
+     page opaquely and full-screen from the first paint — no main content
+     peeking on phones while assets load */
+  html,body{ background:#F4F7FC; }
+  #intro{ position:fixed; inset:0; height:100vh; height:100dvh; z-index:2000;
+    background:#F4F7FC; display:flex; align-items:center; justify-content:center; }
+  #intro.hide{ opacity:0; visibility:hidden; }
+</style>
+<link rel="stylesheet" href="css/styles.css?v=89" />
 <script>
   // Verdant theme removed — always use the light skin
   (function(){ try{ localStorage.removeItem('aero_theme'); }catch(e){} document.documentElement.removeAttribute('data-theme'); })();
