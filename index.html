@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>“Toshkent-AERO” IBK — Bojxona qoidalari</title>
+<meta name="description" content="Bojxona qoidalari bo‘yicha tezkor yo‘riqnoma: aeroport, pochta, mobil qurilmalar, valyuta, kalkulyator." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@1&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css?v=80" />
+<script>
+  // Verdant theme removed — always use the light skin
+  (function(){ try{ localStorage.removeItem('aero_theme'); }catch(e){} document.documentElement.removeAttribute('data-theme'); })();
+</script>
+<link id="gfont-Inter" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+</head>
+<body>
+
+  <!-- per-screen custom background layer -->
+  <div id="screen-bg" aria-hidden="true"></div>
+
+  <template id="__bundler_thumbnail" data-bg-color="#00235E">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#00235E"/>
+      <g fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M520 470 L520 360 L600 300 L680 360 L680 470"/>
+        <path d="M480 470 L720 470"/>
+        <path d="M560 470 L560 415 L640 415 L640 470"/>
+      </g>
+      <path d="M560 250 L700 215 a18 18 0 0 1 9 33 L660 262 L632 318 L612 312 L626 268 L582 280 L566 300 L548 295 L556 268 L520 258 a8 8 0 0 1 2-14 Z" fill="#ffffff" opacity="0.92"/>
+      <text x="600" y="600" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="58" font-weight="700" letter-spacing="-1">Toshkent-AERO</text>
+      <text x="600" y="650" text-anchor="middle" fill="#9fb6df" font-family="Inter, sans-serif" font-size="30">Bojxona qoidalari</text>
+    </svg>
+  </template>
+
+  <!-- INTRO -->
+  <div id="intro">
+    <div class="intro-inner">
+      <div class="intro-mark">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a1 1 0 0 0-.9.3l-.8.8a.8.8 0 0 0 .2 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 2.6 5.7a.8.8 0 0 0 1.3.2l.8-.8a1 1 0 0 0 .3-.9Z"/></svg>
+      </div>
+      <div id="intro-title" class="intro-title">Bojxonaga xush kelibsiz</div>
+      <div id="intro-sub" class="intro-sub">Bojxona qoidalari bo‘yicha tezkor yo‘riqnoma</div>
+      <div class="intro-bar"></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div class="brand" data-nav="#/">
+        <div class="brand-mark">
+          <img class="brand-ico" src="assets/icons/home-white.png" alt="" aria-hidden="true" />
+        </div>
+        <span class="brand-text">
+          <span id="brand-name" class="brand-name">“Toshkent-AERO” IBK</span>
+          <span id="brand-sub" class="brand-sub">Ixtisoslashtirilgan bojxona kompleksi</span>
+        </span>
+      </div>
+      <div class="header-spacer"></div>
+      <div id="lang-switch" class="lang-switch"></div>
+    </div>
+  </header>
+
+  <!-- APP -->
+  <main id="app"></main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <div class="fl">
+        <div class="brand-mark">
+          <img class="brand-ico" src="assets/icons/home-white.png" alt="" aria-hidden="true" />
+        </div>
+        <div>
+          <div class="footer-name">“Toshkent-AERO”</div>
+          <div class="footer-sub" id="footer-brandsub">Ixtisoslashtirilgan bojxona kompleksi</div>
+        </div>
+      </div>
+      <p class="footer-note" id="footer-note"></p>
+    </div>
+  </footer>
+
+  <script src="js/i18n.js?v=15"></script>
+  <script src="js/icons.js?v=35"></script>
+  <script src="js/illustrations.js?v=4"></script>
+  <script src="js/calculator.js?v=9"></script>
+  <script src="js/content-airport.js?v=52"></script>
+  <script src="js/content-post.js?v=22"></script>
+  <script src="js/content-prohibited.js?v=9"></script>
+  <script src="js/content-misc.js?v=10"></script>
+  <script src="js/app.js?v=71"></script>
+  <script src="js/customize.js?v=5"></script>
+  <script>
+    // footer note localized after i18n loads
+    document.addEventListener("DOMContentLoaded", function(){
+      var lang = localStorage.getItem("aero_lang") || "uz";
+      if(!window.I18N[lang]) lang = "uz";
+      var fn = document.getElementById("footer-note");
+      if(fn) fn.textContent = window.I18N[lang].footer_note;
+      var fbs = document.getElementById("footer-brandsub");
+      if(fbs) fbs.textContent = window.I18N[lang].brandSub;
+    });
+  </script>
+</body>
+</html>
+
+<style id="__om-edit-overrides">
+#rule-content .legal >div:nth-child(3) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-weight: 500 !important }
+#pro-filters { letter-spacing: 0.7px !important }
+#pro-filters { height: 46px !important }
+#pro-filters { height: 45px !important }
+#pro-filters { gap: 13px !important }
+#pro-filters { width: 1125px !important }
+#pro-filters { width: 1141px !important }
+#pro-filters { width: 1120px !important }
+#pro-filters { height: 54px !important }
+#pro-filters { height: 41px !important }
+#pro-filters { height: 42px !important }
+#pro-filters { padding: 20px !important }
+#pro-filters { padding: 0px !important }
+#pro-filters { margin: 11px !important }
+#rule-content .legal >.lane-green >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-family: Verdana !important }
+#rule-content .legal >.lane-red >.lane-head { font-family: Inter !important }
+#rule-content .legal >.lane-green >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-family: Inter !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { height: 69px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { height: 63px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { width: 49px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { width: 63px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { height: 69px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { width: 72px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { width: 70px !important }
+.legal-frame >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) >:is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { height: 69px !important }
+#rule-content >.rc-overview { background-size: contain !important }
+#rule-content >.rc-overview { background-size: cover !important }
+#rule-content >.rc-overview { background-size: auto !important }
+#rule-content >.rc-overview { background-size: contain !important }
+#rule-content >.rc-overview { height: 350px !important }
+#rule-content >.rc-overview { height: 345px !important }
+#rule-content >.rc-overview { height: 341px !important }
+#rule-content >.rc-overview { padding: 23px !important }
+#rule-content >.rc-overview { margin: 3px !important }
+#rule-content >.rc-overview { background-size: contain !important }
+#rule-content >.rc-overview { width: 801px !important }
+#rule-content >.rc-overview { width: 806px !important }
+#rule-content >.rc-overview { width: 806px !important }
+#rule-content >.rc-overview { height: 348px !important }
+#rule-content >.rc-overview { height: 326px !important }
+#rule-content >.rc-overview { width: 812px !important }
+#rule-content >.rc-overview { width: 805px !important }
+#rule-content >.rc-overview { text-align: center !important }
+#rule-content >.rc-overview { text-align: left !important }
+#rule-content >.rc-overview { height: 327px !important }
+#rule-content >.rc-overview { padding: 28px !important }
+#rule-content >.rc-overview { margin: -12px !important }
+#rule-content >.rc-overview { margin: -2px !important }
+#rule-content >.rc-overview { border-width: 0px !important; border-style: solid !important }
+#rule-content >.rc-overview { background-size: contain !important }
+#rule-content >.rc-overview { background-size: auto !important }
+#rule-content >.rc-overview { background-size: cover !important }
+#rule-content >.rc-overview { background-position: right center !important }
+#rule-content >.rc-overview { background-size: contain !important }
+#rule-content >.rc-overview { background-position: right center !important }
+#rule-content >.rc-overview { height: 336px !important }
+#rule-content >.rc-overview { width: 809px !important }
+#rule-content >.rc-overview { opacity: 1 !important }
+#rule-content >.rc-overview { margin: 15px !important }
+#rule-content >.rc-overview { padding: 37px !important }
+#rule-content >.rc-overview { border-width: 0px !important }
+#app .page-banner { background-size: contain !important }
+#app .page-banner :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 16px !important }
+#app .page-banner :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 24px !important }
+#app .page-banner :is(h1,h2,h3,h4,h5,h6,p,li,dt,dd,blockquote,figcaption,label,span,a,em,strong,small,td,th,caption) { font-size: 12px !important }
+</style>
