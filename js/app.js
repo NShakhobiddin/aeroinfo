@@ -839,11 +839,16 @@
       intro.style.display = "none";
       return;
     }
-    setTimeout(()=>{
+    let done = false;
+    function dismiss(){
+      if(done) return; done = true;
       intro.classList.add("hide");
       sessionStorage.setItem("aero_intro_seen","1");
       setTimeout(()=>{ intro.style.display="none"; }, 750);
-    }, 3500);
+    }
+    const timer = setTimeout(dismiss, 3500);
+    // tap anywhere to skip the splash (handy on phones)
+    intro.addEventListener("click", function(){ clearTimeout(timer); dismiss(); });
   }
 
   /* ---- init ---- */

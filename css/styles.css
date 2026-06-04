@@ -648,7 +648,7 @@ main{ min-height:60vh; }
 .search-input{ flex:1; min-width:220px; display:flex; align-items:center; gap:10px;
   background:#fff; border:1px solid var(--line); border-radius:99px; padding:12px 18px; box-shadow:var(--shadow-1); }
 .search-input .icon{ width:20px; height:20px; color:var(--muted); }
-.search-input input{ border:none; outline:none; flex:1; font-size:15px; font-family:inherit; color:var(--ink); background:none; min-width:0; }
+.search-input input{ border:none; outline:none; flex:1; font-size:16px; font-family:inherit; color:var(--ink); background:none; min-width:0; }
 .filters{ display:flex; gap:12px; flex-wrap:wrap; }
 .chip{ display:inline-flex; align-items:center; gap:7px; padding:10px 16px; border-radius:99px;
   font-size:14px; font-weight:600; letter-spacing:.3px; color:var(--ink-2);
@@ -1137,4 +1137,35 @@ img{ max-width:100%; height:auto; }
   .app-dl-btn{ width:100%; justify-content:center; }
   /* let the big hero fact value wrap if a translated label is long */
   .facts .fact:first-child .fv{ white-space:normal; }
+}
+
+/* ============================================================
+   MOBILE COMFORT — app-like, ergonomic touch behaviour
+   ============================================================ */
+/* remove the grey tap-flash; we provide our own :active feedback below */
+*{ -webkit-tap-highlight-color: transparent; }
+/* snappier taps: no 300ms delay, no accidental double-tap zoom on controls */
+button, a, .nav-card, .chip, .rn-item, .lang-switch button, .btn, .rule-head,
+.contact, .c-act, .app-dl-btn, .step-way, .back-btn{ touch-action: manipulation; }
+/* in-page scroll targets clear the sticky header */
+html{ scroll-padding-top: calc(var(--header-h) + 12px); }
+/* notch safe-area (0 on ordinary phones; pads rounded-corner / landscape devices) */
+body{ padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+/* tap anywhere to skip the splash */
+#intro{ cursor:pointer; }
+
+/* tactile press feedback (hover never fires on touch) */
+.nav-card:active{ transform: scale(.985); }
+.btn:active{ transform: translateY(1px); }
+.chip:active, .rn-item:active, .app-dl-btn:active, .c-act:active,
+.back-btn:active, .lang-switch button:active{ transform: scale(.97); }
+
+@media (max-width:560px){
+  /* comfortable minimum tap sizes */
+  .lang-switch button{ min-height:38px; }
+  .chip{ min-height:42px; }
+  .c-act{ min-height:44px; }
+  /* momentum scroll + hidden scrollbar for the horizontal rule nav */
+  .rule-nav{ -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .rule-nav::-webkit-scrollbar{ display:none; }
 }
