@@ -298,7 +298,7 @@
         <div class="app-dl-label">${ic("smartphone")}<span>${L({uz:"«Yoʻlovchi bojxona deklaratsiyasi» ilovasini yuklab oling:",ru:"Скачайте приложение «Пассажирская таможенная декларация»:",en:"Download the “Passenger customs declaration” app:",zh:"下载「旅客海关申报」应用："})}</span></div>
         <div class="app-dl-btns">
           <a class="app-dl-btn" href="https://play.google.com/store/apps/details?id=uz.eskishahar.app.yulovchideklaratsiyasi&hl=ru" target="_blank" rel="noopener">${ic("googleplay")}<span>Android</span></a>
-          <a class="app-dl-btn" href="https://apps.apple.com/ru/iphone/search?term=deklaratsiya" target="_blank" rel="noopener">${ic("apple")}<span>iOS</span></a>
+          <a class="app-dl-btn" href="https://apps.apple.com/uz/app/yolovchi-deklaratsiyasi/id6753123613" target="_blank" rel="noopener">${ic("apple")}<span>iOS</span></a>
         </div>
       </div>`;
       return `<p>${L(b.p)}</p>`;

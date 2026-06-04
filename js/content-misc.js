@@ -14,7 +14,7 @@ DATA.mobile_steps = [
       zh:"移动设备须列入旅客海关申报单或包裹申报单。<br>下载应用以在线填写旅客海关申报单：" },
     ways: [
       { ico:"googleplay", uz:"Android uchun", ru:"Android uchun", en:"Android uchun", zh:"Android uchun", url:"https://play.google.com/store/apps/details?id=uz.eskishahar.app.yulovchideklaratsiyasi&hl=ru" },
-      { ico:"apple", uz:"iOS uchun", ru:"iOS uchun", en:"iOS uchun", zh:"iOS uchun", url:"https://apps.apple.com/ru/iphone/search?term=deklaratsiya" }
+      { ico:"apple", uz:"iOS uchun", ru:"iOS uchun", en:"iOS uchun", zh:"iOS uchun", url:"https://apps.apple.com/uz/app/yolovchi-deklaratsiyasi/id6753123613" }
     ]
   },
   {
