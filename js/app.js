@@ -153,25 +153,73 @@
     "airport-in": { illo:"greenChannel", tone:"green",
       badge:{uz:"Aeroport — Kirish",ru:"Аэропорт — Въезд",en:"Airport — Entry",zh:"机场——入境"},
       title:{uz:"Kirish",ru:"Въезд",en:"Entry",zh:"入境"},
-      text:{uz:"Xalqaro aeroportlar orqali uchib kelishda rioya qilishingiz talab etiladigan bojxona qoidalari bilan tanishing.",ru:"Каждый прибывший в международный аэропорт пассажир проходит въезд с соблюдением таможенных правил. Выберите нужное правило в меню слева.",en:"Every passenger arriving at the international airport passes through entry in line with customs rules. Pick a rule from the left menu.",zh:"每位抵达国际机场的旅客均按海关规则办理入境。请从左侧菜单选择规则。"} },
+      text:{uz:"Xalqaro aeroportlar orqali uchib kelishda rioya qilishingiz talab etiladigan bojxona qoidalari bilan tanishing.",ru:"Каждый прибывший в международный аэропорт пассажир проходит въезд с соблюдением таможенных правил. Выберите нужное правило из карточек ниже.",en:"Every passenger arriving at the international airport passes through entry in line with customs rules. Pick a rule from the cards below.",zh:"每位抵达国际机场的旅客均按海关规则办理入境。请从下方卡片中选择规则。"} },
     "airport-out": { illo:"departure", tone:"",
       badge:{uz:"Aeroport — Chiqish",ru:"Аэропорт — Выезд",en:"Airport — Exit",zh:"机场——出境"},
       title:{uz:"Chiqish",ru:"Выезд",en:"Exit",zh:"出境"},
-      text:{uz:"Aeroportdan chiqish jarayonida bojxona qoidalari va cheklovlariga rioya qilish muhim.",ru:"При выезде из аэропорта важно соблюдать таможенные правила и ограничения. Выберите нужное правило в меню слева.",en:"When leaving the airport it is important to follow customs rules and limits. Pick a rule from the left menu.",zh:"离开机场时务必遵守海关规则和限制。请从左侧菜单选择规则。"} },
+      text:{uz:"Aeroportdan chiqish jarayonida bojxona qoidalari va cheklovlariga rioya qilish muhim.",ru:"При выезде из аэропорта важно соблюдать таможенные правила и ограничения. Выберите нужное правило из карточек ниже.",en:"When leaving the airport it is important to follow customs rules and limits. Pick a rule from the cards below.",zh:"离开机场时务必遵守海关规则和限制。请从下方卡片中选择规则。"} },
     "post": { illo:"globe", tone:"",
       badge:{uz:"Pochta va kuryerlik",ru:"Почта и курьер",en:"Post & courier",zh:"邮政与快递"},
       title:{uz:"Xalqaro pochta va<br>kuryerlik jo‘natmalari",ru:"Международные почтовые и курьерские отправления",en:"International postal & courier shipments",zh:"国际邮政和快递包裹"},
-      text:{uz:"Xalqaro pochta va kuryerlik jo‘natmalari uchun bojxona to‘lovsiz va belgilangan me’yorlar doirasida tovarlarni olib kirish mumkin.",ru:"Через международные почтовые и курьерские отправления можно ввозить товары без пошлин в пределах установленных норм. Выберите нужное правило в меню слева.",en:"Through international postal and courier shipments goods may be imported duty-free within set limits. Pick a rule from the left menu.",zh:"通过国际邮政和快递可在规定限额内免税进口商品。请从左侧菜单选择规则。"} }
+      text:{uz:"Xalqaro pochta va kuryerlik jo‘natmalari uchun bojxona to‘lovsiz va belgilangan me’yorlar doirasida tovarlarni olib kirish mumkin.",ru:"Через международные почтовые и курьерские отправления можно ввозить товары без пошлин в пределах установленных норм. Выберите нужное правило из карточек ниже.",en:"Through international postal and courier shipments goods may be imported duty-free within set limits. Pick a rule from the cards below.",zh:"通过国际邮政和快递可在规定限额内免税进口商品。请从下方卡片中选择规则。"} }
   };
 
-  function ruleSidebarView(list, key, headIcon, titleObj, leadObj){
-    ruleState = { list:list, key:key, idx:-1, illo:(OVERVIEWS[key]||{}).illo||"", tone:(OVERVIEWS[key]||{}).tone||"", overview:OVERVIEWS[key]||null };
-    return `${pageHead(headIcon, titleObj, leadObj)}
-    <section class="section wrap" style="padding-top:10px">
-      <div class="rule-layout">
-        <aside class="rule-nav" id="rule-nav">${ruleNavItems()}</aside>
-        <div class="rule-content reveal" id="rule-content">${ruleOverview()}</div>
-      </div>
+  /* section config for the grid → detail navigation */
+  const RULE_SECTIONS = {
+    "airport/in":  { get list(){ return window.DATA.airport_in; },  key:"airport-in",  icon:"planeLanding", route:"#/airport/in",  title:TITLES["#/airport/in"],  lead:ENTRY_LEADS.in },
+    "airport/out": { get list(){ return window.DATA.airport_out; }, key:"airport-out", icon:"planeTakeoff", route:"#/airport/out", title:TITLES["#/airport/out"], lead:ENTRY_LEADS.out },
+    "post":        { get list(){ return window.DATA.post; },        key:"post",        icon:"package",      route:"#/post",        title:TITLES["#/post"],        lead:ENTRY_LEADS.post }
+  };
+
+  /* a tappable sub-section card (opens its own detail screen) */
+  function ruleCard(r, i, route){
+    const go = r.tag
+      ? `<span class="rule-tag rt-${r.type}">${r.tag}</span>`
+      : `<span class="rc-card-go">${ic("arrowRight")}</span>`;
+    return `<button class="rule-card reveal rt-${r.type}" data-nav="${route}/${i}">
+      <span class="rc-card-ico">${ic(r.icon)}</span>
+      <span class="rc-card-main">
+        <span class="rc-card-title">${L(r.title)}</span>
+        <span class="rc-card-short">${L(r.short)}</span>
+      </span>
+      ${go}
+    </button>`;
+  }
+
+  /* LIST screen — overview + a grid of sub-section cards */
+  function ruleGridView(cfg){
+    const list = cfg.list;
+    const ov = OVERVIEWS[cfg.key] || null;
+    ruleState = { list:list, key:cfg.key, idx:-1, illo:(ov||{}).illo||"", tone:(ov||{}).tone||"", overview:ov };
+    return `${pageHead(cfg.icon, cfg.title, cfg.lead)}
+    <section class="section wrap rule-section">
+      ${ruleOverview()}
+      <div class="rule-grid">${list.map((r,i)=>ruleCard(r,i,cfg.route)).join("")}</div>
+      <div class="disclaimer">${ic("info")}<span>${t("disclaimer")}</span></div>
+    </section>`;
+  }
+
+  /* previous / next rule within the same section */
+  function ruleDetailNav(cfg, idx){
+    const list = cfg.list;
+    const prev = idx>0 ? list[idx-1] : null;
+    const next = idx<list.length-1 ? list[idx+1] : null;
+    if(!prev && !next) return "";
+    return `<div class="detail-nav">
+      ${prev?`<button class="dnav prev" data-nav="${cfg.route}/${idx-1}">${ic("arrowLeft")}<span class="dnav-t">${L(prev.title)}</span></button>`:`<span class="dnav-sp"></span>`}
+      ${next?`<button class="dnav next" data-nav="${cfg.route}/${idx+1}"><span class="dnav-t">${L(next.title)}</span>${ic("arrowRight")}</button>`:`<span class="dnav-sp"></span>`}
+    </div>`;
+  }
+
+  /* DETAIL screen — one rule, with a back button to its list */
+  function ruleDetailView(cfg, idx){
+    const r = cfg.list[idx];
+    const ov = OVERVIEWS[cfg.key] || null;
+    ruleState = { list:cfg.list, key:cfg.key, idx:idx, illo:(ov||{}).illo||"", tone:(ov||{}).tone||"", overview:ov };
+    return `${pageHead(cfg.icon, cfg.title, null, cfg.route)}
+    <section class="section wrap rule-section" style="padding-top:4px">
+      <div class="rule-content reveal" id="rule-content">${renderRuleContent(r)}</div>
+      ${ruleDetailNav(cfg, idx)}
       <div class="disclaimer">${ic("info")}<span>${t("disclaimer")}</span></div>
     </section>`;
   }
@@ -569,10 +617,10 @@
   }
 
   /* ---- shared page head + breadcrumb ---- */
-  function pageHead(iconName, titleObj, leadObj){
+  function pageHead(iconName, titleObj, leadObj, backHash){
     return `<div class="wrap">
       ${breadcrumb(titleObj)}
-      <button class="back-btn" data-back>${ic("arrowLeft")} ${t("back")}</button>
+      <button class="back-btn" ${backHash?`data-nav="${backHash}"`:"data-back"}>${ic("arrowLeft")} ${t("back")}</button>
       <div class="page-head">
         <div class="page-kicker">${ic(iconName)} ${t("brandName")}</div>
         <h1 class="page-title">${L(titleObj)}</h1>
@@ -583,9 +631,16 @@
   function breadcrumb(titleObj){
     const hash = location.hash || "#/";
     const parts = [`<button data-nav="#/">${t("home")}</button>`];
+    const detail = hash.match(/^#\/(airport\/in|airport\/out|post)\/\d+$/);
+    const ruleCrumb = (detail && ruleState.list[ruleState.idx])
+      ? `<span class="sep">/</span><span class="cur">${L(ruleState.list[ruleState.idx].title)}</span>` : "";
     if(hash.startsWith("#/airport/")){
       parts.push(`<span class="sep">/</span><button data-nav="#/airport">${L(TITLES["#/airport"])}</button>`);
-      parts.push(`<span class="sep">/</span><span class="cur">${L(titleObj)}</span>`);
+      parts.push(`<span class="sep">/</span>${detail?`<button data-nav="#/${detail[1]}">${L(titleObj)}</button>`:`<span class="cur">${L(titleObj)}</span>`}`);
+      parts.push(ruleCrumb);
+    } else if(detail){
+      parts.push(`<span class="sep">/</span><button data-nav="#/post">${L(titleObj)}</button>`);
+      parts.push(ruleCrumb);
     } else if(hash === "#/prohibited" || hash === "#/prohibited-post"){
       parts.push(`<span class="sep">/</span><span class="cur">${L(titleObj)}</span>`);
     } else {
@@ -602,9 +657,15 @@
     switch(true){
       case hash === "#/": html = homeView(); break;
       case hash === "#/airport": html = airportSplitView(); break;
-      case hash === "#/airport/in": html = ruleSidebarView(window.DATA.airport_in, "airport-in", "planeLanding", TITLES["#/airport/in"], ENTRY_LEADS.in); break;
-      case hash === "#/airport/out": html = ruleSidebarView(window.DATA.airport_out, "airport-out", "planeTakeoff", TITLES["#/airport/out"], ENTRY_LEADS.out); break;
-      case hash === "#/post": html = ruleSidebarView(window.DATA.post, "post", "package", TITLES["#/post"], ENTRY_LEADS.post); break;
+      case hash === "#/airport/in": html = ruleGridView(RULE_SECTIONS["airport/in"]); break;
+      case hash === "#/airport/out": html = ruleGridView(RULE_SECTIONS["airport/out"]); break;
+      case hash === "#/post": html = ruleGridView(RULE_SECTIONS["post"]); break;
+      case /^#\/(airport\/in|airport\/out|post)\/\d+$/.test(hash): {
+        const mm = hash.match(/^#\/(airport\/in|airport\/out|post)\/(\d+)$/);
+        const cfg = RULE_SECTIONS[mm[1]];
+        if(!cfg.list[+mm[2]]){ location.hash = cfg.route; return; }
+        html = ruleDetailView(cfg, +mm[2]); break;
+      }
       case hash === "#/calc": html = calcView(); break;
       case hash === "#/mobile": html = mobileView(); break;
       case hash === "#/contacts": html = contactsView(); break;
@@ -634,6 +695,7 @@
     return d ? `<img class="cust-ico" src="${d}" alt="" />` : ic(name);
   }
   function screenKeyFor(hash){
+    hash = hash.replace(/\/\d+$/, ""); // rule-detail sub-routes share their list's background
     const map = {
       "#/":"home", "#/airport":"airport", "#/airport/in":"airport-in", "#/airport/out":"airport-out",
       "#/post":"post", "#/calc":"calc", "#/mobile":"mobile", "#/contacts":"contacts",
