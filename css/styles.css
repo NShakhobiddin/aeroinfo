@@ -83,7 +83,7 @@ img,svg{ display:block; }
   position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
   background:
     linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.28) 42%, rgba(255,255,255,.50) 100%),
-    url("../assets/bg-home.png") center bottom / cover no-repeat,
+    url("../assets/bg-home.webp") center bottom / cover no-repeat,
     linear-gradient(180deg,#fff 0%, var(--navy-tint-2) 100%);
   transition:opacity .7s ease, visibility .7s;
 }
@@ -316,7 +316,7 @@ main{ min-height:60vh; }
 .pb-cap .icon{ width:18px; height:18px; flex:none; margin-top:1px; color:var(--navy-500); }
 /* mobile section banner: photo background */
 .page-banner.banner-mobile{ min-height:240px;
-  background:linear-gradient(100deg, rgba(255,255,255,.93) 20%, rgba(255,255,255,.5) 50%, rgba(255,255,255,.1) 80%), url("../assets/bg-mobile.png") center right / cover no-repeat; }
+  background:linear-gradient(100deg, rgba(255,255,255,.93) 20%, rgba(255,255,255,.5) 50%, rgba(255,255,255,.1) 80%), url("../assets/bg-mobile.webp") center right / cover no-repeat; }
 .page-banner.banner-mobile::before{ display:none; }
 .page-banner.banner-mobile .pb-illo{ display:none; }
 @media(max-width:620px){
@@ -438,20 +438,20 @@ main{ min-height:60vh; }
 @media(max-width:679px){ .rc-illo{ order:-1; } }
 /* exit-section overview: airplane photo background (only this box) */
 .rc-overview-exit{ grid-template-columns:1fr; border-radius:var(--r-lg); overflow:hidden;
-  background:linear-gradient(100deg, rgba(255,255,255,.94) 26%, rgba(255,255,255,.62) 54%, rgba(255,255,255,.22) 82%), url("../assets/bg-exit.png") center right / cover no-repeat; }
+  background:linear-gradient(100deg, rgba(255,255,255,.94) 26%, rgba(255,255,255,.62) 54%, rgba(255,255,255,.22) 82%), url("../assets/bg-exit.webp") center right / cover no-repeat; }
 @media(min-width:680px){ .rc-overview-exit{ grid-template-columns:1fr; } }
 .rc-overview-exit .rc-illo{ display:none; }
 .rc-overview-exit .rc-otext p{ max-width:40ch; }
 .rc-overview-exit{ min-height:344px; align-content:center; background-position:center 42%; }
 /* entry-section overview: airport/passport illustration background (only this box) */
 .rc-overview-entry{ grid-template-columns:1fr; min-height:344px; align-content:center; border-radius:var(--r-lg); overflow:hidden;
-  background:linear-gradient(100deg, rgba(255,255,255,.94) 26%, rgba(255,255,255,.62) 52%, rgba(255,255,255,.18) 84%), url("../assets/bg-entry.png") center right / cover no-repeat; }
+  background:linear-gradient(100deg, rgba(255,255,255,.94) 26%, rgba(255,255,255,.62) 52%, rgba(255,255,255,.18) 84%), url("../assets/bg-entry.webp") center right / cover no-repeat; }
 @media(min-width:680px){ .rc-overview-entry{ grid-template-columns:1fr; } }
 .rc-overview-entry .rc-illo{ display:none; }
 .rc-overview-entry .rc-otext p{ max-width:40ch; }
 /* post-section overview: parcels illustration background (only this box) */
 .rc-overview-post{ grid-template-columns:1fr; min-height:344px; align-content:center; border-radius:var(--r-lg); overflow:hidden;
-  background:linear-gradient(100deg, rgba(255,255,255,.95) 28%, rgba(255,255,255,.64) 54%, rgba(255,255,255,.2) 86%), url("../assets/bg-post.png") center right / cover no-repeat; }
+  background:linear-gradient(100deg, rgba(255,255,255,.95) 28%, rgba(255,255,255,.64) 54%, rgba(255,255,255,.2) 86%), url("../assets/bg-post.webp") center right / cover no-repeat; }
 @media(min-width:680px){ .rc-overview-post{ grid-template-columns:1fr; } }
 .rc-overview-post .rc-illo{ display:none; }
 .rc-overview-post .rc-otext p{ max-width:40ch; }

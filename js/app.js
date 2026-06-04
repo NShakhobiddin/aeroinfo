@@ -91,7 +91,7 @@
             <button class="btn btn-ghost" data-nav="#/calc">${ic("calculator")} ${t("hero_cta2")}</button>
           </div>
         </div>
-        <div class="hero-illo">${illoOrImg("hero", '<img class="illo illo-emblem" src="'+window.__res('assets/customs-emblem.png')+'" alt="O‘zbekiston Respublikasi Davlat bojxona xizmati" />')}
+        <div class="hero-illo">${illoOrImg("hero", '<img class="illo illo-emblem" src="'+window.__res('assets/customs-emblem.webp')+'" alt="O‘zbekiston Respublikasi Davlat bojxona xizmati" />')}
           <div class="hero-illo-cap" aria-hidden="true">
             <span class="hic-name">${t("brandName")}</span>
             <span class="hic-sub">${t("brandSub")}</span>
