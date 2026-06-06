@@ -429,6 +429,11 @@
 
   /* ---- calculator ---- */
   let calcMode = "airport";
+  function calcLimitNote(){
+    return calcMode==='airport'
+      ? L({uz:"Bojsiz limit: 1000$",ru:"Беспошлинный лимит: 1000$",en:"Duty-free limit: $1,000",zh:"免税额度：1000美元"})
+      : L({uz:"Bojsiz limit: 200$",ru:"Беспошлинный лимит: 200$",en:"Duty-free limit: $200",zh:"免税额度：200美元"});
+  }
   function calcView(){
     return `${pageHead("calculator", TITLES["#/calc"], {uz:"Taxminiy bojxona to‘lovini hisoblang. Dollar kursi Markaziy bankdan avtomatik olinadi.",ru:"Рассчитайте примерный таможенный платёж. Курс доллара берётся автоматически из ЦБ.",en:"Estimate the customs payment. The USD rate is fetched automatically from the CBU.",zh:"估算海关税费。美元汇率自动取自乌兹央行。"})}
     <section class="section wrap" style="padding-top:10px">
@@ -439,7 +444,7 @@
       <div class="calc-wrap">
         <div class="calc-card">
           <h3>${t("calc_inputs")}</h3>
-          <p class="sub">${calcMode==='airport'? L({uz:"Bojsiz limit: 1000$",ru:"Беспошлинный лимит: 1000$",en:"Duty-free limit: $1,000",zh:"免税额度：1000美元"}) : L({uz:"Bojsiz limit: 200$",ru:"Беспошлинный лимит: 200$",en:"Duty-free limit: $200",zh:"免税额度：200美元"})}</p>
+          <p class="sub" id="calc-limit-note">${calcLimitNote()}</p>
           <div id="calc-fields">${calcFields()}</div>
           <div class="rate-status" id="rate-status">${rateStatusHtml()}</div>
         </div>
@@ -830,6 +835,7 @@
       document.querySelectorAll("#calc-tabs button").forEach(b=>b.classList.toggle("active", b===tab));
       document.getElementById("calc-fields").innerHTML = calcFields();
       document.getElementById("calc-result").innerHTML = calcResult();
+      const ln = document.getElementById("calc-limit-note"); if(ln) ln.innerHTML = calcLimitNote();
       return;
     }
   });
