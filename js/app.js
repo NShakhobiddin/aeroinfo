@@ -535,7 +535,7 @@
       rows += row(t("calc_r_delivery"), "$"+fmtUSD(r.deliveryShare));
       rows += row(t("calc_r_customsVal"), "$"+fmtUSD(r.customsValue), true);
     }
-    rows += row(t("calc_r_excessWeight"), fmtKg(r.excessWeight)+" kg");
+    rows += row(calcMode==="airport" ? t("calc_weight") : t("calc_r_excessWeight"), fmtKg(r.excessWeight)+" kg");
     rows += row(t("calc_r_dutyVal"), "$"+fmtUSD(r.dutyByValue), !r.byWeightWins);
     rows += row(t("calc_r_dutyWeight"), "$"+fmtUSD(r.dutyByWeight), r.byWeightWins);
     rows += row(t("calc_r_duty"), fmtSom(r.dutySom)+" "+t("som"));

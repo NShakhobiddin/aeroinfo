@@ -2,7 +2,7 @@
    CALCULATOR — taxminiy bojxona to‘lovi
    Spec:
    • Aeroport: limit 1000$. Boj = max(ortiqcha qiymatning 30%,
-     ortiqcha vaznning har kg uchun 3$) + BHM ning 25% (BHM=412000).
+     kiritilgan umumiy vaznning har kg uchun 3$) + BHM ning 25% (BHM=412000).
    • Jo‘natma: limit 200$. Bojxona qiymati = ortiqcha tovar qiymati
      + ortiqcha vaznga nisbatan yetkazib berish ulushi. Boj = max(30%,
      3$/kg) + BHM ning 25%.
@@ -23,14 +23,14 @@ window.calcAirport = function(goodsValue, totalWeight, rate){
   r.valid = true;
   const excessValue = Math.max(0, goodsValue - LIMIT);
   if(excessValue <= 0){ r.withinLimit = true; r.total = 0; return r; }
-  const excessWeight = totalWeight > 0 ? totalWeight * (excessValue / goodsValue) : 0;
+  // aeroport: vazn bo‘yicha boj kiritilgan umumiy vazndan olinadi (nisbat qo‘llanmaydi)
   const dutyByValue = excessValue * window.DUTY_VAL_RATE;        // USD
-  const dutyByWeight = excessWeight * window.DUTY_KG_USD;        // USD
+  const dutyByWeight = totalWeight * window.DUTY_KG_USD;         // USD
   const dutyUSD = Math.max(dutyByValue, dutyByWeight);
   const dutySom = dutyUSD * rate;
   const bhmFee = window.BHM * window.BHM_RATE;
   r.excessValue = excessValue;
-  r.excessWeight = excessWeight;
+  r.excessWeight = totalWeight;
   r.dutyByValue = dutyByValue;
   r.dutyByWeight = dutyByWeight;
   r.byWeightWins = dutyByWeight > dutyByValue;
