@@ -1267,3 +1267,19 @@ body{ padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inse
 
 /* a little breathing room between the filter chips and the first item */
 #pro-filters{ margin-bottom:14px; }
+
+/* web-declaration variant of the guide card (green accent) */
+.video-guide.web-declare{ background:linear-gradient(135deg, var(--ok), #0a6b41); }
+
+/* video-guide button inside a step */
+.step-video{ display:flex; align-items:center; gap:11px; margin-top:12px; padding:11px 14px;
+  border-radius:12px; background:linear-gradient(135deg, var(--navy), var(--navy-600));
+  color:#fff; box-shadow:var(--shadow-1); transition:transform .15s, box-shadow .15s; }
+.step-video:hover{ transform:translateY(-1px); box-shadow:var(--shadow-2); }
+.step-video > .icon:first-child{ width:20px; height:20px; flex:none;
+  background:rgba(255,255,255,.16); border-radius:8px; padding:5px; box-sizing:content-box; }
+.step-video .sv-txt{ display:flex; flex-direction:column; flex:1; min-width:0; }
+.step-video .sv-title{ font-weight:700; font-size:14px; }
+.step-video .sv-sub{ font-size:12px; color:rgba(255,255,255,.72); }
+.step-video > .icon:last-child{ width:17px; height:17px; flex:none; transition:transform .15s; }
+.step-video:hover > .icon:last-child{ transform:translateX(3px); }

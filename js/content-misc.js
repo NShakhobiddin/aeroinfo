@@ -15,7 +15,12 @@ DATA.mobile_steps = [
     ways: [
       { ico:"googleplay", uz:"Android uchun", ru:"Android uchun", en:"Android uchun", zh:"Android uchun", url:"https://play.google.com/store/apps/details?id=uz.eskishahar.app.yulovchideklaratsiyasi&hl=ru" },
       { ico:"apple", uz:"iOS uchun", ru:"iOS uchun", en:"iOS uchun", zh:"iOS uchun", url:"https://apps.apple.com/uz/app/yolovchi-deklaratsiyasi/id6753123613" }
-    ]
+    ],
+    video: {
+      url:"https://docs.google.com/videos/d/1nag42Fjy_9knvgr1s2N-8QE9MXGMgK6y-xuXYnmM4_s/edit?usp=sharing",
+      title:{uz:"Video qo‘llanma",ru:"Видеоинструкция",en:"Video guide",zh:"视频指南"},
+      sub:{uz:"Deklaratsiya toʻldirish",ru:"Пошаговое видео по оформлению",en:"Step-by-step clearance video",zh:"观看分步清关视频"}
+    }
   },
   {
     icon: "search", icoImg:"assets/icons/step-check.png",

@@ -553,11 +553,19 @@
     return `${pageHead("smartphone", TITLES["#/mobile"], {uz:"Mobil qurilmani rasmiylashtirish",ru:"4 шага оформления мобильного устройства.",en:"4 steps to clear a mobile device.",zh:"移动设备清关的 4 个步骤。"})}
     <section class="section wrap" style="padding-top:10px">
       ${banner("phone","",{uz:"Telefon, planshet va mobil aloqa moduliga ega qurilmalar deklaratsiyalanadi",ru:"Декларируются телефоны, планшеты и устройства с модулем мобильной связи.",en:"Phones, tablets and devices with a mobile-communication module are declared.",zh:"电话、平板及带移动通信模块的设备均须申报。"},"banner-mobile")}
-      <a class="video-guide" href="https://docs.google.com/videos/d/1nag42Fjy_9knvgr1s2N-8QE9MXGMgK6y-xuXYnmM4_s/edit?usp=sharing" target="_blank" rel="noopener">
+      <a class="video-guide" href="https://docs.google.com/videos/d/1YY6R-4RuQs6hUeFv4FCyL-q1cUK61gv32BYgTRbhWkA/edit?usp=sharing" target="_blank" rel="noopener">
         <span class="vg-ico">${ic("play")}</span>
         <span class="vg-txt">
-          <span class="vg-title">${({uz:"Video qo‘llanma",ru:"Видеоинструкция",en:"Video guide",zh:"视频指南"})[lang]}</span>
-          <span class="vg-sub">${({uz:"Deklaratsiya toʻldirish",ru:"Пошаговое видео по оформлению",en:"Watch the step-by-step clearance video",zh:"观看分步清关视频"})[lang]}</span>
+          <span class="vg-title">${({uz:"Mobil qurilmani deklaratsiyalash",ru:"Декларирование мобильного устройства",en:"Declaring a mobile device",zh:"移动设备申报"})[lang]}</span>
+          <span class="vg-sub">${({uz:"Video qo‘llanma",ru:"Видеоинструкция",en:"Video guide",zh:"视频指南"})[lang]}</span>
+        </span>
+        ${ic("arrowRight")}
+      </a>
+      <a class="video-guide web-declare" href="https://ybdweb.customs.uz/" target="_blank" rel="noopener">
+        <span class="vg-ico">${ic("globe")}</span>
+        <span class="vg-txt">
+          <span class="vg-title">${({uz:"Web sahifa orqali telefonni deklaratsiyalash",ru:"Декларирование телефона через веб-страницу",en:"Declare your phone via the web page",zh:"通过网页申报手机"})[lang]}</span>
+          <span class="vg-sub">ybdweb.customs.uz</span>
         </span>
         ${ic("arrowRight")}
       </a>
@@ -571,6 +579,7 @@
               ? `<a class="step-way is-link" href="${w.url}" target="_blank" rel="noopener">${inner}</a>`
               : `<span class="step-way">${inner}</span>`;
           }).join("")}</div>`;
+          if(s.video) extra += `<a class="step-video" href="${s.video.url}" target="_blank" rel="noopener">${ic("play")}<span class="sv-txt"><span class="sv-title">${L(s.video.title)}</span><span class="sv-sub">${L(s.video.sub)}</span></span>${ic("arrowRight")}</a>`;
           return `<div class="step reveal">
             <span class="step-ico">${s.icoImg?`<img src="${window.__res(s.icoImg)}" alt="" />`:''}<span class="step-ico-num">${i+1}</span></span>
             <div class="step-main">
